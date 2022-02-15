@@ -1,0 +1,104 @@
+*{
+    box-sizing: border-box;
+    --cor-header:rgba(236, 54, 45, 1);
+    --cor-borda:rgba(213, 213, 213, 1);
+    --cor-botao-criar-quizz: rgba(236, 54, 45, 1);
+    --cor-corpo-site: rgba(250, 250, 250, 1);
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+    background: var(--cor-corpo-site);
+}
+
+/* Cabeçalho */
+header{
+    width: 100vw;
+    height: 69px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--cor-header);
+    margin-bottom: 8%;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+header h1{
+    font-size: 37px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 1)
+}
+
+/* Parte principal do site */
+main{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Caixa que cria quizz */
+section.criar-quizz{
+    height: 181px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px dashed var(--cor-borda);
+    border-radius: 5px;
+    margin-bottom: 8%;
+}
+
+section.criar-quizz p{
+    max-width: 75%;
+    max-height: fit-content;
+    color: rgba(185, 185, 185, 1);
+    font-size: 20px;
+    text-align: center;
+    margin-top: 8%;
+}
+
+section.criar-quizz button{
+    width: 151px;
+    height: 40px;
+    color: var(--cor-botao-criar-quizz);
+    border: 1px dashed var(--cor-botao-criar-quizz);
+    border-radius: 50px;
+    font-size: 21px;
+    background-color: var(--cor-corpo-site);
+    margin-bottom: 5%;
+}
+
+/* Todos os Quizzes */
+section.todos-os-quizzes {
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+section.todos-os-quizzes h1{
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 4%;
+}
+
+section.todos-os-quizzes .quizz{
+    position: relative;
+    margin-bottom: 5%;
+    max-width:340px;
+}
+
+section.todos-os-quizzes .quizz img{
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+section.todos-os-quizzes .quizz p{
+    color: var(--cor-corpo-site);
+    font-size: 19px;
+    position: absolute;
+    bottom: 8%;
+    left: 4%;
+    max-width: 85%;
+}
