@@ -13,14 +13,16 @@ body{
 
 /* Cabeçalho */
 header{
+    position: fixed;
     width: 100vw;
     height: 69px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: var(--cor-header);
-    margin-bottom: 6%;
+    margin-bottom: 31px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    z-index: 1;
 }
 
 header h1{
@@ -33,11 +35,12 @@ header h1{
 main{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* Caixa que cria quizz */
-section.criar-quizz{
+.criar-quizz{
     height: 181px;
     width: 90%;
     display: flex;
@@ -46,10 +49,11 @@ section.criar-quizz{
     align-items: center;
     border: 1px dashed var(--cor-borda);
     border-radius: 5px;
-    margin-bottom: 6%;
+    margin-top: 100px;
+    margin-bottom: 30px;
 }
 
-section.criar-quizz p{
+.criar-quizz p{
     max-width: 250px;
     max-height: fit-content;
     color: rgba(185, 185, 185, 1);
@@ -58,7 +62,7 @@ section.criar-quizz p{
     margin-top: 20px;
 }
 
-section.criar-quizz button{
+.criar-quizz button{
     width: 151px;
     height: 40px;
     color: var(--cor-botao-criar-quizz);
@@ -70,7 +74,7 @@ section.criar-quizz button{
 }
 
 /* Todos os Quizzes */
-section.todos-os-quizzes {
+.todos-os-quizzes {
     width: 90%;
     display: flex;
     flex-wrap: wrap;
@@ -78,28 +82,68 @@ section.todos-os-quizzes {
     justify-content: center;
 }
 
-section.todos-os-quizzes h1{
+.todos-os-quizzes h1{
     font-size: 20px;
     font-weight: 700;
     margin-bottom: 14px;
+    max-width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: max-content;
 }
 
-section.todos-os-quizzes .quizz{
+.todos-os-quizzes span{
+    font-size: 30px;
+    color: var(--cor-botao-criar-quizz);
+    display: flex;
+    align-items: center;
+}
+
+.todos-os-quizzes .quizz{
     position: relative;
     margin-bottom: 14px;
     max-width:340px;
 }
 
-section.todos-os-quizzes .quizz img{
+.todos-os-quizzes .quizz img{
     max-width: 100%;
     border-radius: 5px;
 }
 
-section.todos-os-quizzes .quizz p{
+.todos-os-quizzes .quizz p{
     color: var(--cor-corpo-site);
     font-size: 19px;
     position: absolute;
     bottom: 8%;
     left: 4%;
     max-width: 85%;
+}
+
+.escondido{
+    display:none;
+}
+
+@media (min-width: 1100px){
+    .criar-quizz{
+        margin-bottom: 70px;
+    }
+
+    .todos-os-quizzes {
+        justify-content: flex-start;
+        flex-direction: row;
+    }
+
+    .todos-os-quizzes h1{
+        width: 100%;
+        height: fit-content;
+        justify-content: flex-start;
+    }
+    .todos-os-quizzes .quizz{
+        margin:0 15px 12px 0;
+    }
+
+    .todos-os-quizzes span{
+        margin-left: 10px;
+    }
 }
