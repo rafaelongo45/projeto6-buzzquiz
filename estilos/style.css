@@ -38,10 +38,6 @@ header h1{
 
 /* Parte principal do site */
 main{
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; */
     width: 100%;
     margin-top: 69px;
 }
@@ -49,6 +45,7 @@ main{
 /* TELA 01 */
 .tela01 {
     width: 90%;
+    max-width: 1051px;
     margin: 0 auto;
 }
 
@@ -93,15 +90,22 @@ main{
     flex-direction: column;
     align-items: center;
 }
+.todos-os-quizzes ul {
+    display: flex;
+    flex-wrap: wrap;
+}
 
-.todos-os-quizzes h1{
+.todos-os-quizzes div{
     width: 100%;
     max-width: 340px;
-    font-size: 20px;
-    font-weight: 700;
+    margin-bottom: 14px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+.todos-os-quizzes h2 {
+    font-size: 20px;
+    font-weight: 700;
 }
 
 .todos-os-quizzes ion-icon {
@@ -114,7 +118,7 @@ main{
     width: 100%;
     max-width: 340px;
     max-height: 181px;
-    margin: 10px auto;  
+    margin-bottom: 14px;
 }
 
 .todos-os-quizzes .quizz img{
@@ -262,26 +266,23 @@ main{
     }
 
     .todos-os-quizzes {
-        justify-content: flex-start;
-        flex-direction: row;
+        display: block;
     }
 
-    .todos-os-quizzes h1{
+    .todos-os-quizzes div{
         margin-bottom: 15px;
         justify-content:flex-start;
     }
-
-    .todos-os-quizzes span{
-        margin-left: 15px;
+    .todos-os-quizzes h2 {
+        margin-right: 17px;
     }
 
     .todos-os-quizzes .quizz{
         margin:0 15px 12px 0;
     }
-
-    .todos-os-quizzes span{
-        margin-left: 10px;
-    }
+        .todos-os-quizzes .quizz:nth-of-type(3n) {
+            margin-right: 0;
+        }
 }
 
 /* CLASSES JS */
