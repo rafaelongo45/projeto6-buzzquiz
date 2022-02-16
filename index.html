@@ -175,7 +175,7 @@
                 </button>
             </section>
             <!-- layout tela 3.2: perguntas -->
-            <section class="criacao-perguntas">
+            <section class="criacao-perguntas escondido">
                 <div class="criacao-titulo">
                     <h2>Crie suas perguntas</h2>
                 </div>
@@ -215,8 +215,45 @@
                         </div>
                     </li>
                 </ul>
+                <button class="proximo-passo">
+                    Prosseguir pra criar níveis
+                </button>
             </section>
             <!-- layout tela 3.3: níveis -->
+            <section class="criacao-niveis">
+                <div class="criacao-titulo">
+                    <h2>Agora, decida os níveis!</h2>
+                </div>
+                <ul>
+                    <li>
+                        <div class="pergunta-form">
+                            <h2>Nível 1</h2>
+                            <ion-icon name="create-outline" class="escondido"></ion-icon>
+                        </div>
+                        <form>
+                            <input type="text" name="titulo-nivel" id="titulo-nivel" placeholder="Título do nível">
+                            <input type="text" name="acerto-nivel" id="acerto-nivel" placeholder="% de acerto mínima">
+                            <input type="text" name="url-nivel" id="url-nivel" placeholder="URL da imagem do nível">
+                            <textarea name="descricao-nivel" id="descricao-nivel" cols="30" rows="10" placeholder="Descrição do nível"></textarea>
+                        </form>
+                    </li>
+                    <li>
+                        <div class="pergunta-form">
+                            <h2>Nível 2</h2>
+                            <ion-icon name="create-outline"></ion-icon>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pergunta-form">
+                            <h2>Nível 3</h2>
+                            <ion-icon name="create-outline"></ion-icon>
+                        </div>
+                    </li>
+                </ul>
+                <button class="proximo-passo">
+                    Finalizar Quizz
+                </button>
+            </section>
             <!-- layout tela 3.4: sucesso -->
         </section>
 
