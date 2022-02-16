@@ -4,23 +4,28 @@
     --cor-borda:rgba(213, 213, 213, 1);
     --cor-botao-criar-quizz: rgba(236, 54, 45, 1);
     --cor-corpo-site: rgba(250, 250, 250, 1);
+    --cor-titulo: rgba(255, 255, 255, 1);
+    --cor-primeira-pergunta:rgba(67, 76, 160, 1);
+    --cor-segunda-pergunta:rgb(160, 67, 141, 1);
+    --cor-resposta-quizz: rgba(236, 54, 45, 1);
 }
 
 body{
     font-family: 'Roboto', sans-serif;
-    background: var(--cor-corpo-site);
+    background-color: var(--cor-corpo-site);
 }
 
 /* Cabeçalho */
 header{
     position: fixed;
-    width: 100vw;
+    top:0;
+    left: 0;
+    width: 100%;
     height: 69px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: var(--cor-header);
-    margin-bottom: 31px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     z-index: 1;
 }
@@ -28,14 +33,14 @@ header{
 header h1{
     font-size: 37px;
     font-weight: 700;
-    color: rgba(255, 255, 255, 1)
+    color: var(--cor-titulo);
 }
 
 /* Parte principal do site */
 main{
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 
@@ -78,32 +83,28 @@ main{
     width: 90%;
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
 }
 
 .todos-os-quizzes h1{
+    width: 100%;
     font-size: 20px;
     font-weight: 700;
-    margin-bottom: 14px;
-    max-width: 100%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    height: max-content;
+    justify-content: space-between;
 }
 
 .todos-os-quizzes span{
     font-size: 30px;
     color: var(--cor-botao-criar-quizz);
     display: flex;
-    align-items: center;
 }
 
 .todos-os-quizzes .quizz{
     position: relative;
-    margin-bottom: 14px;
-    max-width:340px;
+    max-width: 340px;
+    max-height: 181px;
+    margin: 10px auto;  
 }
 
 .todos-os-quizzes .quizz img{
@@ -120,8 +121,129 @@ main{
     max-width: 85%;
 }
 
-.escondido{
-    display:none;
+/* Tela 2*/
+
+/* Imagem com titulo quizz*/
+
+.titulo-quizz{
+    margin-top:69px;   
+    min-width: 100%;
+    height: 142px;
+    position: relative;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom:25px;
+}
+
+.titulo-quizz img{
+    width: 100%;
+    height: 100%;
+}
+
+.caixona{
+    width:100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container{
+    width: 95%;
+    height: 60vh;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--cor-titulo);
+    margin-bottom: 30px;
+}
+
+.titulo-quizz h1{
+    position:absolute;
+    font-size: 19px;
+    color: var(--cor-titulo)
+}
+
+.titulo-primeira-pergunta{
+    width:100%;
+    height: 20%;
+    margin:auto;
+    display:flex;
+    text-align: center;
+    align-items: center;
+    background-color: var(--cor-primeira-pergunta);
+    font-weight: 700;
+    font-size: 19px;
+    justify-content: center;
+}
+
+.titulo-primeira-pergunta h1{
+    color: var(--cor-titulo);
+}
+
+.titulo-segunda-pergunta{
+    width:100%;
+    height: 20%;
+    margin:auto;
+    display:flex;
+    text-align: center;
+    align-items: center;
+    background-color: var(--cor-segunda-pergunta);
+    font-weight: 700;
+    font-size: 19px;
+    justify-content: center;
+
+}
+
+.titulo-segunda-pergunta h1{
+    color: var(--cor-titulo);
+}
+
+.resposta{
+    max-width: 48%;;
+}
+
+.resposta img{
+    max-width: 100%;
+}
+
+.resposta h1{
+    margin-top: 5px;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.titulo-resultado{
+    width:100%;
+    height: 20%;
+    display:flex;
+    text-align: center;
+    align-items: center;
+    background-color: var(--cor-resposta-quizz);
+    font-weight: 700;
+    font-size: 19px;
+    justify-content: center;
+
+}
+
+.titulo-resultado h1{
+    color: var(--cor-titulo)
+}
+
+.resultado img{
+    max-width: 100%;
+}
+
+.resultado p{
+    margin-top:10px;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.botoes-fim-quizz{
+    display:flex;
+    flex-direction: column;
 }
 
 @media (min-width: 1100px){
@@ -135,10 +257,14 @@ main{
     }
 
     .todos-os-quizzes h1{
-        width: 100%;
-        height: fit-content;
-        justify-content: flex-start;
+        margin-bottom: 15px;
+        justify-content:flex-start;
     }
+
+    .todos-os-quizzes span{
+        margin-left: 15px;
+    }
+
     .todos-os-quizzes .quizz{
         margin:0 15px 12px 0;
     }
@@ -146,4 +272,8 @@ main{
     .todos-os-quizzes span{
         margin-left: 10px;
     }
+}
+
+.escondido{
+    display:none;
 }
