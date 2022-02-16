@@ -5,13 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./estilos/reset.css">
-    <link rel="stylesheet" href="./estilos/style.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
+    
+    <link rel="stylesheet" href="./estilos/reset.css">
+    <link rel="stylesheet" href="./estilos/style.css">
+    
     <title>BuzzQuizz</title>
+    <link rel="shortcut icon" href="imagens/buzzfeed_arrow.png" type="image/x-icon">
 </head>
 
 <body>
@@ -22,132 +25,124 @@
     <main>
         <!--layout tela 1-->
 
-        <!-- Criar quizz -->
-        <section class="criar-quizz escondido">
-            <p>Você não criou nenhum quizz ainda :(</p>
-            <button>Criar quizz</button>
-        </section>
-
-        <!-- Todos os quizzes -->
-        <section class="todos-os-quizzes escondido">
-            <h1>Todos os Quizzes</h1>
-            <article class="quizz">
-                <img src="./imagens/simpsons-quizz.png" alt="Simpsons imagem">
-                <p>Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
-            </article>
-
-            <article class="quizz">
-                <img src="./imagens/deboas-quizz.png" alt="Simpsons imagem">
-                <p>O quanto você é de boas?</p>
-            </article>
-
-            <article class="quizz">
-                <img src="./imagens/deboas-quizz.png" alt="Simpsons imagem">
-                <p>O quanto você é de boas?</p>
-            </article>
-
-            <article class="quizz">
-                <img src="./imagens/deboas-quizz.png" alt="Simpsons imagem">
-                <p>O quanto você é de boas?</p>
-            </article>
-
-            <article class="quizz">
-                <img src="./imagens/deboas-quizz.png" alt="Simpsons imagem">
-                <p>O quanto você é de boas?</p>
-            </article>
-
-            <article class="quizz">
-                <img src="./imagens/deboas-quizz.png" alt="Simpsons imagem">
-                <p>O quanto você é de boas?</p>
-            </article>
-        </section>
-
-        <!-- Seus quizzes -->
-        <section class="todos-os-quizzes escondido">
-            <h1>Seus Quizzes <span>
-                    <ion-icon name="add-circle"></ion-icon>
-                </span> </h1>
-            <article class="quizz">
-                <img src="./imagens/potter.png" alt="Simpsons imagem">
-                <p>O quão Potterhead é você?</p>
-            </article>
-
-            <article class="quizz">
-                <img src="./imagens/ferias.png" alt="Simpsons imagem">
-                <p>É ex-BBB ou ex-De férias com o Ex?</p>
-            </article>
+        <section class="tela01">
+            <!-- Criar quizz -->
+            <div class="criar-quizz">
+                <p>Você não criou nenhum quizz ainda :(</p>
+                <button>Criar quizz</button>
+            </div>
+            <!-- Todos os quizzes -->
+            <div class="todos-os-quizzes">
+                <h1>Todos os Quizzes</h1>
+                <ul>
+                    <li class="quizz">
+                        <img src="./imagens/simpsons-quizz.png" alt="Simpsons imagem">
+                        <p>Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
+                    </li>
+                    <li class="quizz">
+                        <img src="./imagens/deboas-quizz.png" alt="Simpsons imagem">
+                        <p>O quanto você é de boas?</p>
+                    </li>
+                    <li class="quizz">
+                        <img src="./imagens/deboas-quizz.png" alt="Simpsons imagem">
+                        <p>O quanto você é de boas?</p>
+                    </li>
+                    <li class="quizz">
+                        <img src="./imagens/deboas-quizz.png" alt="Simpsons imagem">
+                        <p>O quanto você é de boas?</p>
+                    </li>
+                    <li class="quizz">
+                        <img src="./imagens/deboas-quizz.png" alt="Simpsons imagem">
+                        <p>O quanto você é de boas?</p>
+                    </li>
+                    <li class="quizz">
+                        <img src="./imagens/deboas-quizz.png" alt="Simpsons imagem">
+                        <p>O quanto você é de boas?</p>
+                    </li>
+                </ul>
+            </div>
+            <!-- Seus quizzes -->
+            <div class="todos-os-quizzes">
+                <h1>Seus Quizzes
+                    <span>
+                        <ion-icon name="add-circle"></ion-icon>
+                    </span>
+                </h1>
+                <article class="quizz">
+                    <img src="./imagens/potter.png" alt="Simpsons imagem">
+                    <p>O quão Potterhead é você?</p>
+                </article>
+                <article class="quizz">
+                    <img src="./imagens/ferias.png" alt="Simpsons imagem">
+                    <p>É ex-BBB ou ex-De férias com o Ex?</p>
+                </article>
+            </div>
         </section>
 
 
 
         <!--layout tela 2-->
 
-        <section class="titulo-quizz">
-            <img src="./imagens/potter.png" alt="">
-            <h1>O quão Potterhead é você?</h1>
-        </section>
-
-
-        <div class = "caixona">
-            <section class="container ">
-                <div class="titulo-primeira-pergunta">
-                    <h1>Em qual animal Olho-Tonto Moody transfigurou Malfoy?</h1>
-                </div>
-
-                <div class="resposta"><img src="./imagens/image 3.png" alt="">
-                    <h1>Gatito</h1>
-                </div>
-                <div class="resposta"><img src="./imagens/image 3.png" alt="">
-                    <h1>Gatito</h1>
-                </div>
-                <div class="resposta"><img src="./imagens/image 3.png" alt="">
-                    <h1>Gatito</h1>
-                </div>
-                <div class="resposta"><img src="./imagens/image 3.png" alt="">
-                    <h1>Gatito</h1>
-                </div>
+        <div class="escondido">
+            <section class="titulo-quizz">
+                <img src="./imagens/potter.png" alt="">
+                <h1>O quão Potterhead é você?</h1>
+            </section>
+            <div class = "caixona">
+                <section class="container ">
+                    <div class="titulo-primeira-pergunta">
+                        <h1>Em qual animal Olho-Tonto Moody transfigurou Malfoy?</h1>
+                    </div>
+                    <div class="resposta"><img src="./imagens/image 3.png" alt="">
+                        <h1>Gatito</h1>
+                    </div>
+                    <div class="resposta"><img src="./imagens/image 3.png" alt="">
+                        <h1>Gatito</h1>
+                    </div>
+                    <div class="resposta"><img src="./imagens/image 3.png" alt="">
+                        <h1>Gatito</h1>
+                    </div>
+                    <div class="resposta"><img src="./imagens/image 3.png" alt="">
+                        <h1>Gatito</h1>
+                    </div>
+                </section>
+            </div>
+            <div class = "caixona">
+                <section class="container ">
+                    <div class="titulo-segunda-pergunta">
+                        <h1>Em qual animal Olho-Tonto Moody transfigurou Malfoy?</h1>
+                    </div>
+                    <div class="resposta"><img src="./imagens/image 3.png" alt="">
+                        <h1>Gatito</h1>
+                    </div>
+                    <div class="resposta"><img src="./imagens/image 3.png" alt="">
+                        <h1>Gatito</h1>
+                    </div>
+                    <div class="resposta"><img src="./imagens/image 3.png" alt="">
+                        <h1>Gatito</h1>
+                    </div>
+                    <div class="resposta"><img src="./imagens/image 3.png" alt="">
+                        <h1>Gatito</h1>
+                    </div>
+                </section>
+            </div>
+            <div class = "caixona">
+                <section class="container ">
+                    <div class="titulo-resultado">
+                        <h1>88% de acerto: Você é praticamente um aluno de Hogwarts!</h1>
+                    </div>
+                    <div class="resultado">
+                        <img src="./imagens/image 10.png" alt="">
+                        <p>Parabéns Potterhead! Bem-vindx a Hogwarts, aproveite o loop infinito de comida e clique no botão
+                            abaixo para usar o vira-tempo e reiniciar este teste.</p>
+                    </div>
+                </section>
+            </div>
+            <section class="botoes-fim-quizz">
+                <button>Reiniciar Quizz</button>
+                <button>Voltar pra home</button>
             </section>
         </div>
-
-
-        <div class = "caixona">
-            <section class="container ">
-                <div class="titulo-segunda-pergunta">
-                    <h1>Em qual animal Olho-Tonto Moody transfigurou Malfoy?</h1>
-                </div>
-
-                <div class="resposta"><img src="./imagens/image 3.png" alt="">
-                    <h1>Gatito</h1>
-                </div>
-                <div class="resposta"><img src="./imagens/image 3.png" alt="">
-                    <h1>Gatito</h1>
-                </div>
-                <div class="resposta"><img src="./imagens/image 3.png" alt="">
-                    <h1>Gatito</h1>
-                </div>
-                <div class="resposta"><img src="./imagens/image 3.png" alt="">
-                    <h1>Gatito</h1>
-                </div>
-            </section>
-        </div>
-        <div class = "caixona">
-            <section class="container ">
-                <div class="titulo-resultado">
-                    <h1>88% de acerto: Você é praticamente um aluno de Hogwarts!</h1>
-                </div>
-
-                <div class="resultado">
-                    <img src="./imagens/image 10.png" alt="">
-                    <p>Parabéns Potterhead! Bem-vindx a Hogwarts, aproveite o loop infinito de comida e clique no botão
-                        abaixo para usar o vira-tempo e reiniciar este teste.</p>
-                </div>
-            </section>
-        </div>
-
-        <section class="botoes-fim-quizz">
-            <button>Reiniciar Quizz</button>
-            <button>Voltar pra home</button>
-        </section>
 
     </main>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

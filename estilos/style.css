@@ -38,16 +38,24 @@ header h1{
 
 /* Parte principal do site */
 main{
-    display: flex;
-    flex-wrap: wrap;
+    /* display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
+    width: 100%;
+    margin-top: 69px;
+}
+
+/* TELA 01 */
+.tela01 {
+    width: 90%;
+    margin: 0 auto;
 }
 
 /* Caixa que cria quizz */
 .criar-quizz{
     height: 181px;
-    width: 90%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -80,13 +88,15 @@ main{
 
 /* Todos os Quizzes */
 .todos-os-quizzes {
-    width: 90%;
+    width: 100%;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
 }
 
 .todos-os-quizzes h1{
     width: 100%;
+    max-width: 340px;
     font-size: 20px;
     font-weight: 700;
     display: flex;
@@ -94,14 +104,14 @@ main{
     justify-content: space-between;
 }
 
-.todos-os-quizzes span{
+.todos-os-quizzes ion-icon {
     font-size: 30px;
     color: var(--cor-botao-criar-quizz);
-    display: flex;
 }
 
 .todos-os-quizzes .quizz{
     position: relative;
+    width: 100%;
     max-width: 340px;
     max-height: 181px;
     margin: 10px auto;  
@@ -274,6 +284,7 @@ main{
     }
 }
 
+/* CLASSES JS */
 .escondido{
     display:none;
 }
