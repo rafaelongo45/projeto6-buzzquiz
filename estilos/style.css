@@ -118,7 +118,7 @@ main{
     position: relative;
     width: 100%;
     max-width: 340px;
-    max-height: 181px;
+    height: 181px;
     margin-bottom: 14px;
     border-radius: 5px;
 }
@@ -136,7 +136,7 @@ main{
 
 .quizz-thumb img{
     width: 100%;
-    height: 181px;
+    height: 100%;
     border-radius: 5px;
     object-fit: cover;
 }
@@ -489,6 +489,16 @@ label {
         font-size: 19px;
         line-height: 25px;
         margin-top: 0;
+    }
+
+    /* TELA 03 */
+    .tela03 > section {
+        width: 600px;
+        margin:  0 auto;
+    }
+    .tela03 .quizz-thumb {
+        max-width: 500px;
+        height: 266px;
     }
 }
 
