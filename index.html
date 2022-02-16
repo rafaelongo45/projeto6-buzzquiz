@@ -25,7 +25,7 @@
     <main>
         <!--layout tela 1-->
 
-        <section class="tela01">
+        <section class="tela01 escondido">
             <!-- Criar quizz -->
             <div class="criar-quizz">
                 <p>Você não criou nenhum quizz ainda :(</p>
@@ -88,53 +88,63 @@
 
         <!--layout tela 2-->
 
-        <div class="escondido">
-            <section class="titulo-quizz">
-                <img src="./imagens/potter.png" alt="">
-                <h1>O quão Potterhead é você?</h1>
-            </section>
-            <div class = "caixona">
-                <section class="container ">
+        <section class="tela 02">
+            <div class="titulo-quizz">
+                <img src="imagens/wallpaper.jpg" alt="">
+                <h2>O quão Potterhead é você?</h1>
+            </div>
+            <ul class="lista-perguntas">
+                <li class="pergunta">
                     <div class="titulo-primeira-pergunta">
-                        <h1>Em qual animal Olho-Tonto Moody transfigurou Malfoy?</h1>
+                        <h2>Em qual animal Olho-Tonto Moody transfigurou Malfoy?</h2>
                     </div>
-                    <div class="resposta"><img src="./imagens/image 3.png" alt="">
-                        <h1>Gatito</h1>
-                    </div>
-                    <div class="resposta"><img src="./imagens/image 3.png" alt="">
-                        <h1>Gatito</h1>
-                    </div>
-                    <div class="resposta"><img src="./imagens/image 3.png" alt="">
-                        <h1>Gatito</h1>
-                    </div>
-                    <div class="resposta"><img src="./imagens/image 3.png" alt="">
-                        <h1>Gatito</h1>
-                    </div>
-                </section>
-            </div>
-            <div class = "caixona">
-                <section class="container ">
+                    <ul class="container-respostas">
+                        <li class="resposta">
+                            <img src="./imagens/image 3.png" alt="">
+                            <p>Gatito</p>
+                        </li>
+                        <li class="resposta">
+                            <img src="./imagens/image 3.png" alt="">
+                            <p>Gatito</p>
+                        </li>
+                        <li class="resposta">
+                            <img src="./imagens/image 3.png" alt="">
+                            <p>Gatito</p>
+                        </li>
+                        <li class="resposta">
+                            <img src="./imagens/image 3.png" alt="">
+                            <p>Gatito</p>
+                        </li>
+                    </ul>
+                </li>
+                <li class="pergunta">
                     <div class="titulo-segunda-pergunta">
-                        <h1>Em qual animal Olho-Tonto Moody transfigurou Malfoy?</h1>
+                        <h2>Em qual animal Olho-Tonto Moody transfigurou Malfoy?</h2>
                     </div>
-                    <div class="resposta"><img src="./imagens/image 3.png" alt="">
-                        <h1>Gatito</h1>
-                    </div>
-                    <div class="resposta"><img src="./imagens/image 3.png" alt="">
-                        <h1>Gatito</h1>
-                    </div>
-                    <div class="resposta"><img src="./imagens/image 3.png" alt="">
-                        <h1>Gatito</h1>
-                    </div>
-                    <div class="resposta"><img src="./imagens/image 3.png" alt="">
-                        <h1>Gatito</h1>
-                    </div>
-                </section>
-            </div>
+                    <ul class="container-respostas">
+                        <li class="resposta">
+                            <img src="./imagens/image 3.png" alt="">
+                            <p>Gatito</p>
+                        </li>
+                        <li class="resposta">
+                            <img src="./imagens/image 3.png" alt="">
+                            <p>Gatito</p>
+                        </li>
+                        <li class="resposta">
+                            <img src="./imagens/image 3.png" alt="">
+                            <p>Gatito</p>
+                        </li>
+                        <li class="resposta">
+                            <img src="./imagens/image 3.png" alt="">
+                            <p>Gatito</p>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
             <div class = "caixona">
-                <section class="container ">
+                <section class="container">
                     <div class="titulo-resultado">
-                        <h1>88% de acerto: Você é praticamente um aluno de Hogwarts!</h1>
+                        <h2>88% de acerto: Você é praticamente um aluno de Hogwarts!</h2>
                     </div>
                     <div class="resultado">
                         <img src="./imagens/image 10.png" alt="">
@@ -143,11 +153,13 @@
                     </div>
                 </section>
             </div>
-            <section class="botoes-fim-quizz">
-                <button>Reiniciar Quizz</button>
-                <button>Voltar pra home</button>
-            </section>
-        </div>
+            
+            <div class="container-botoes">
+                <button class="botao-reiniciar">Reiniciar Quizz</button>
+                <button class="botao-home">Voltar pra home</button>
+            </div>
+
+        </section>
 
     </main>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

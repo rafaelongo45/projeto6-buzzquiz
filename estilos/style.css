@@ -1,6 +1,6 @@
 *{
     box-sizing: border-box;
-    --cor-header:rgba(236, 54, 45, 1);
+    --cor-vermelho:rgba(236, 54, 45, 1);
     --cor-borda:rgba(213, 213, 213, 1);
     --cor-botao-criar-quizz: rgba(236, 54, 45, 1);
     --cor-corpo-site: rgba(250, 250, 250, 1);
@@ -25,9 +25,9 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--cor-header);
+    background-color: var(--cor-vermelho);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    z-index: 1;
+    z-index: 10;
 }
 
 header h1{
@@ -120,6 +120,16 @@ main{
     max-height: 181px;
     margin-bottom: 14px;
 }
+.quizz::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+  }
 
 .todos-os-quizzes .quizz img{
     max-width: 100%;
@@ -133,26 +143,55 @@ main{
     bottom: 8%;
     left: 4%;
     max-width: 85%;
+    z-index: 2;
 }
 
-/* Tela 2*/
+/* TELA 02*/
 
+.tela02 {
+    width: 100%;
+    margin-top: 69px;
+}
 /* Imagem com titulo quizz*/
-
-.titulo-quizz{
-    margin-top:69px;   
-    min-width: 100%;
+.titulo-quizz{ 
+    width: 100%;
     height: 142px;
     position: relative;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom:25px;
+    display: flex;
+    margin-bottom: 25px;
 }
 
 .titulo-quizz img{
     width: 100%;
     height: 100%;
+    object-fit: cover;
+}
+.titulo-quizz h2{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    font-size: 19px;
+    color: var(--cor-titulo);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lista-perguntas {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+.pergunta {
+    width: 340px;
+    margin-bottom: 50px;
+}
+.container-respostas {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .caixona{
@@ -164,7 +203,6 @@ main{
 
 .container{
     width: 95%;
-    height: 60vh;
     display:flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -173,33 +211,29 @@ main{
     margin-bottom: 30px;
 }
 
-.titulo-quizz h1{
-    position:absolute;
-    font-size: 19px;
-    color: var(--cor-titulo)
-}
+
 
 .titulo-primeira-pergunta{
     width:100%;
-    height: 20%;
-    margin:auto;
+    height: 90px;
+    margin-bottom: 12px;
     display:flex;
     text-align: center;
     align-items: center;
-    background-color: var(--cor-primeira-pergunta);
+    background-color: var(--cor-primeira-pergunta); /* inserir a cor dinamicamente */
     font-weight: 700;
     font-size: 19px;
     justify-content: center;
 }
 
-.titulo-primeira-pergunta h1{
+.titulo-primeira-pergunta h2{
     color: var(--cor-titulo);
 }
 
 .titulo-segunda-pergunta{
     width:100%;
-    height: 20%;
-    margin:auto;
+    height: 90px;
+    margin-bottom: 12px;
     display:flex;
     text-align: center;
     align-items: center;
@@ -210,19 +244,24 @@ main{
 
 }
 
-.titulo-segunda-pergunta h1{
+.titulo-segunda-pergunta h2{
     color: var(--cor-titulo);
 }
 
-.resposta{
-    max-width: 48%;;
+.resposta {
+    margin: 0 10px 12px 0;
 }
+    .resposta:nth-child(2n) {
+        margin-right: 0;
+    }
 
 .resposta img{
-    max-width: 100%;
+    width: 165px;
+    height: 115px;
+    object-fit: cover;
 }
 
-.resposta h1{
+.resposta p{
     margin-top: 5px;
     font-weight: 700;
     font-size: 16px;
@@ -230,7 +269,8 @@ main{
 
 .titulo-resultado{
     width:100%;
-    height: 20%;
+    height: 90px;
+    margin-bottom: 10px;
     display:flex;
     text-align: center;
     align-items: center;
@@ -241,26 +281,49 @@ main{
 
 }
 
-.titulo-resultado h1{
+.titulo-resultado h2 {
     color: var(--cor-titulo)
 }
 
 .resultado img{
-    max-width: 100%;
+    width: 100%;
 }
 
 .resultado p{
     margin-top:10px;
     font-size: 17px;
     font-weight: 700;
+    color: #484848;
 }
 
-.botoes-fim-quizz{
-    display:flex;
+.container-botoes {
+    width: 100%;
+    display: flex;
+    align-items: center;
     flex-direction: column;
+    margin: 50px 0;
+}
+.container-botoes button {
+    width: 230px;
+    height: 45px;
+    border: none;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: 400;
+    text-align: center;
+}
+.container-botoes .botao-reiniciar {
+    margin-bottom: 10px;
+    background-color: var(--cor-vermelho);
+    color: #FFF5F4;
+}
+.container-botoes .botao-menu {
+    background-color: var(--cor-corpo-site);
+    color: #818181;
 }
 
 @media (min-width: 1100px){
+    /* TELA 01 */
     .criar-quizz{
         margin-bottom: 70px;
     }
