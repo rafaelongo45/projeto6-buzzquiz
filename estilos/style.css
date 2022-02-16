@@ -40,6 +40,7 @@ header h1{
 main{
     width: 100%;
     margin-top: 69px;
+    background-color: var(--cor-corpo-site);
 }
 
 /* TELA 01 */
@@ -311,6 +312,75 @@ main{
     background-color: var(--cor-corpo-site);
     color: #818181;
 }
+
+
+/* TELA 03 */
+.tela03 {
+    width: 100%;
+    margin-top: 69px;
+    border: 1px solid transparent;
+}
+    .tela03 .criacao-titulo {
+        width: 100%;
+        margin: 30px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .tela03 h2 {
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 23.5px;
+        color: #000;
+    }
+
+button:hover {
+    cursor: pointer;
+}
+form {
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+input {
+    width: 95%;
+    height: 50px;
+    margin-bottom: 9px;
+    border: 1px solid #d1d1d1;
+    border-radius: 5px;
+    padding-left: 14px;
+    font-size: 19px;
+    color: #262626;
+}
+    input::placeholder {
+        color: #bababa;
+        font-style: italic;
+    }
+    input:focus {
+        outline: 1px solid #bfbfbf;
+    }
+
+.tela03 button {
+    width: 324px;
+    height: 54px;
+    border: none;
+    border-radius: 15px;
+    background-color: var(--cor-vermelho);
+    color: #fff5f4;
+    font-size: 18px;
+    font-weight: 400;
+    margin-top: 50px;
+}
+
+.tela03 > section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 
 @media (min-width: 1100px){
     /* TELA 01 */
