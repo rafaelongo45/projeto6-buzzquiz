@@ -28,11 +28,121 @@
         <section class="tela01 ">
         </section>
 
-
-
         <!--layout tela 2-->
 
         <section class="tela02 escondido">
+        </section>
+
+        <section class="tela03 escondido">
+            <!-- layout tela 3.1: info básica -->
+            <section class="criacao-info">
+                <div class="criacao-titulo">
+                    <h2>Começe pelo começo</h2>
+                </div>
+                <form>
+                    <input type="text" name="titulo-quizz" id="titulo-quizz" placeholder="Título do seu quizz">
+                    <input type="url" name="url-quizz" id="url-quizz" placeholder="URL da imagem do seu quizz">
+                    <input type="number" name="qtd-perguntas" id="qtd-perguntas" placeholder="Quantidade de perguntas do quizz">
+                    <input type="number" name="qtd-niveis" id="qtd-niveis" placeholder="Quantidade de níveis do quizz">
+                </form>
+                <button class="proximo-passo">
+                    Prosseguir pra criar perguntas
+                </button>
+            </section>
+            <!-- layout tela 3.2: perguntas -->
+            <section class="criacao-perguntas">
+                <div class="criacao-titulo">
+                    <h2>Crie suas perguntas</h2>
+                </div>
+                <ul>
+                    <li>
+                        <div class="pergunta-form">
+                            <h2>Pergunta 1</h2>
+                            <ion-icon name="create-outline" class="escondido"></ion-icon>
+                        </div>
+                        <form>
+                            <input type="text" name="texto-pergunta" id="texto-pergunta" placeholder="Texto da pergunta">
+                            <input type="text" name="cor-pergunta" id="cor-pergunta" placeholder="Cor de fundo da pergunta">
+                            
+                            <label for="resposta-correta">Resposta correta</label>
+                            <input type="text" name="resposta-correta" id="resposta-correta" placeholder="Resposta correta">
+                            <input type="url" name="url-correta" id="url-correta" placeholder="URL da imagem">
+                            
+                            <label for="respostas-incorretas">Respostas incorretas</label>
+                            <input type="text" name="resposta-incorreta01" id="resposta-incorreta02" placeholder="Resposta incorreta 1">
+                            <input type="url" name="url-incorreta01" id="url-incorreta01" placeholder="URL da imagem 1">
+                            <input type="text" name="resposta-incorreta01" id="resposta-incorreta02" placeholder="Resposta incorreta 2">
+                            <input type="url" name="url-incorreta01" id="url-incorreta01" placeholder="URL da imagem 2">
+                            <input type="text" name="resposta-incorreta01" id="resposta-incorreta02" placeholder="Resposta incorreta 3">
+                            <input type="url" name="url-incorreta01" id="url-incorreta01" placeholder="URL da imagem 3">
+                        </form>
+                    </li>
+                    <li>
+                        <div class="pergunta-form">
+                            <h2>Pergunta 2</h2>
+                            <ion-icon name="create-outline"></ion-icon>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pergunta-form">
+                            <h2>Pergunta 3</h2>
+                            <ion-icon name="create-outline"></ion-icon>
+                        </div>
+                    </li>
+                </ul>
+                <button class="proximo-passo">
+                    Prosseguir pra criar níveis
+                </button>
+            </section>
+            <!-- layout tela 3.3: níveis -->
+            <section class="criacao-niveis">
+                <div class="criacao-titulo">
+                    <h2>Agora, decida os níveis!</h2>
+                </div>
+                <ul>
+                    <li>
+                        <div class="pergunta-form">
+                            <h2>Nível 1</h2>
+                            <ion-icon name="create-outline" class="escondido"></ion-icon>
+                        </div>
+                        <form>
+                            <input type="text" name="titulo-nivel" id="titulo-nivel" placeholder="Título do nível">
+                            <input type="text" name="acerto-nivel" id="acerto-nivel" placeholder="% de acerto mínima">
+                            <input type="text" name="url-nivel" id="url-nivel" placeholder="URL da imagem do nível">
+                            <textarea name="descricao-nivel" id="descricao-nivel" cols="30" rows="10" placeholder="Descrição do nível"></textarea>
+                        </form>
+                    </li>
+                    <li>
+                        <div class="pergunta-form">
+                            <h2>Nível 2</h2>
+                            <ion-icon name="create-outline"></ion-icon>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pergunta-form">
+                            <h2>Nível 3</h2>
+                            <ion-icon name="create-outline"></ion-icon>
+                        </div>
+                    </li>
+                </ul>
+                <button class="proximo-passo">
+                    Finalizar Quizz
+                </button>
+            </section>
+            <!-- layout tela 3.4: sucesso -->
+            <section class="criacao-sucesso">
+                <div class="criacao-titulo">
+                    <h2>Seu quizz está pronto!</h2>
+                </div>
+                <div class="quizz-thumb">
+                    <img src="imagens/wallpaper.jpg" alt="imagem teste">
+                    <p>O quão Potterhead é você?</p>
+                </div>
+                <div class="container-botoes">
+                    <button class="botao-vermelho">Acessar Quizz</button>
+                    <button class="botao-home">Voltar pra home</button>
+                </div>
+            </section>
         </section>
 
     </main>

@@ -40,6 +40,7 @@ header h1{
 main{
     width: 100%;
     margin-top: 69px;
+    background-color: var(--cor-corpo-site);
 }
 
 /* TELA 01 */
@@ -113,14 +114,15 @@ main{
     color: var(--cor-botao-criar-quizz);
 }
 
-.todos-os-quizzes .quizz{
+.quizz-thumb {
     position: relative;
     width: 100%;
     max-width: 340px;
-    max-height: 181px;
+    height: 181px;
     margin-bottom: 14px;
+    border-radius: 5px;
 }
-.quizz::after {
+.quizz-thumb::after {
     content: "";
     width: 100%;
     height: 100%;
@@ -129,15 +131,17 @@ main{
     left: 0;
     z-index: 1;
     background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+    border-radius: 5px;
   }
 
-.todos-os-quizzes .quizz img{
+.quizz-thumb img{
     width: 100%;
+    height: 100%;
     border-radius: 5px;
-    max-height: 181px;
+    object-fit: cover;
 }
 
-.todos-os-quizzes .quizz p{
+.quizz-thumb p{
     color: var(--cor-corpo-site);
     font-size: 19px;
     position: absolute;
@@ -313,6 +317,132 @@ main{
     color: #818181;
 }
 
+
+/* TELA 03 */
+.tela03 {
+    width: 100%;
+    margin-top: 69px;
+    border: 1px solid transparent;
+}
+    .tela03 .criacao-titulo {
+        width: 100%;
+        margin: 30px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .tela03 h2 {
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 23.5px;
+        color: #000;
+    }
+    .tela03 .pergunta-form {
+        width: 95%;
+        height: 74px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+        .pergunta-form ion-icon {
+            font-size: 24px;
+            color: #000;
+        }
+
+button:hover {
+    cursor: pointer;
+}
+form {
+    width: 95%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+input, textarea {
+    width: 100%;
+    height: 50px;
+    margin-bottom: 9px;
+    border: 1px solid #d1d1d1;
+    border-radius: 5px;
+    padding-left: 14px;
+    font-size: 19px;
+    color: #262626;
+}
+    input::placeholder, textarea::placeholder {
+        color: #bababa;
+        font-style: italic;
+    }
+    input:focus, textarea:focus {
+        outline: 1px solid #bfbfbf;
+    }
+textarea {
+    font-family: 'Roboto', sans-serif;
+    height: 200px;
+    padding-top: 10px;
+}
+label {
+    width: 100%;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 23.5px;
+    color: #000;
+    margin: 20px 0;
+    align-self: flex-start;
+}
+
+.tela03 button {
+    width: 324px;
+    height: 54px;
+    border: none;
+    border-radius: 15px;
+    background-color: var(--cor-vermelho);
+    color: #fff5f4;
+    font-size: 18px;
+    font-weight: 400;
+    margin: 50px 0;
+}
+.tela03 .container-botoes {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 50px 0;
+}
+.tela03 .container-botoes button {
+    width: 230px;
+    height: 45px;
+    border: none;
+    border-radius: 15px;
+    margin: 0;
+    font-size: 18px;
+    font-weight: 400;
+    text-align: center;
+}
+.tela03 .container-botoes .botao-vermelho {
+    margin-bottom: 10px;
+    background-color: var(--cor-vermelho);
+    color: #FFF5F4;
+}
+.tela03 .container-botoes .botao-home {
+    background-color: var(--cor-corpo-site);
+    color: #818181;
+}
+
+.tela03 > section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.tela03 ul, li {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
 @media (min-width: 1100px){
     /* TELA 01 */
     .criar-quizz{
@@ -360,9 +490,19 @@ main{
         line-height: 25px;
         margin-top: 0;
     }
+
+    /* TELA 03 */
+    .tela03 > section {
+        width: 600px;
+        margin:  0 auto;
+    }
+    .tela03 .quizz-thumb {
+        max-width: 500px;
+        height: 266px;
+    }
 }
 
 /* CLASSES JS */
 .escondido{
-    display:none;
+    display: none !important;
 }

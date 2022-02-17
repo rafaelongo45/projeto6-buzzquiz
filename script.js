@@ -30,11 +30,11 @@ function renderizaTela01(dadoSite) {
             <ion-icon name="add-circle"></ion-icon>
         </div>
         <ul>
-            <li class="quizz">
+            <li class="quizz-thumb">
                 <img src="./imagens/potter.png" alt="Simpsons imagem">
                 <p>O quão Potterhead é você?</p>
             </li>
-            <li class="quizz">
+            <li class="quizz-thumb">
                 <img src="./imagens/ferias.png" alt="Simpsons imagem">
                 <p>É ex-BBB ou ex-De férias com o Ex?</p>
             </li>
@@ -68,7 +68,7 @@ function renderizaTodosOsQuizzes(dadoSite) {
     const ul = document.querySelector('.quizzes-site');
     for (let i = 0; i < dadoSite.length; i++) {
         ul.innerHTML += `
-        <li class="quizz" onclick = "clicouQuizz(this)">
+        <li class="quizz-thumb" onclick = "clicouQuizz(this)">
             <img src="${dadoSite[i].image}">
             <p>${dadoSite[i].title}</p>
             <span class = "id escondido"> ${dadoSite[i].id}</span>
