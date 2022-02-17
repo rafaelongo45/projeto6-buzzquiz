@@ -1,5 +1,6 @@
 const QUIZZ_API = "https://mock-api.driven.com.br/api/v4/buzzquizz";
 let quizzesData = null;
+let listaRespostas = [];
 
 function pegarDadosAPI() {
     const promessa = axios.get("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes");
@@ -120,7 +121,7 @@ function renderizaTela02(data) {
     for (let i = 0; i < perguntasSite.length; i++) {
         listaPerguntas.innerHTML +=
             `
-        <li class="pergunta">
+        <li class="pergunta ">
             <div class="titulo-primeira-pergunta">
                 <h2>${perguntasSite[i].title}</h2>
             </div>
@@ -133,12 +134,12 @@ function renderizaTela02(data) {
     }
     
     const containerRespostas = document.querySelectorAll('.container-respostas')
-    let listaRespostas = [];
+
     
     for (let i = 0; i < containerRespostas.length; i++){
         listaRespostas.push([])
         for (let j = 0; j < perguntasSite[i].answers.length; j++){
-            listaRespostas[i].push({imagem: perguntasSite[i].answers[j].image, texto: perguntasSite[i].answers[j].text});
+            listaRespostas[i].push({imagem: perguntasSite[i].answers[j].image, texto: perguntasSite[i].answers[j].text, acertou: perguntasSite[i].answers[j].isCorrectAnswer});
         }
      
     }
@@ -151,7 +152,7 @@ function renderizaTela02(data) {
         for (let j = 0; j < perguntasSite[i].answers.length; j++){
             containerRespostas[i].innerHTML += 
             `
-                <li class="resposta">
+                <li class="resposta" onclick = "clicaResposta(this)">
                 <img src="${listaRespostas[i][j].imagem}" alt="">
                 <p>${listaRespostas[i][j].texto}</p>
                 </li>
@@ -181,12 +182,22 @@ function comparador() {
 	return Math.random() - 0.5; 
 }
 
+function clicaResposta(elemento){
+    const containerElemento = elemento.parentNode;
+    const todasRespostas = containerElemento.querySelectorAll('.resposta');
+    const todasRespostasTexto = containerElemento.querySelectorAll('p');
+    for (let i = 0; i < todasRespostas.length; i++){
+        if(todasRespostas[i] === elemento){
+
+        }else{
+            todasRespostas[i].classList.add('deixa-esbranquiçado')
+        }
+        todasRespostas[i].onclick = null;
+    }
+    
+    console.log(todasRespostasTexto)
+    
+}
+
+
 pegarDadosAPI();
-
-
-/*containerRespostas[i].innerHTML += `
-<li class="resposta">
-    <img src="${perguntasSite[i].answers[j].image}" alt="">
-    <p>${perguntasSite[i].answers[j].text}</p>
-</li>
-`*/

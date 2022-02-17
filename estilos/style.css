@@ -506,3 +506,15 @@ label {
 .escondido{
     display: none !important;
 }
+
+.deixa-esbranquiçado{
+    opacity: 0.3;
+}
+
+.certo{
+    color:rgba(0, 156, 34, 1);
+}
+
+.errado{
+    color:rgba(255, 75, 75, 1);
+}
