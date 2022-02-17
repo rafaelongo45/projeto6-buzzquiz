@@ -132,8 +132,9 @@ main{
   }
 
 .todos-os-quizzes .quizz img{
-    max-width: 100%;
+    width: 100%;
     border-radius: 5px;
+    max-height: 181px;
 }
 
 .todos-os-quizzes .quizz p{
