@@ -2,6 +2,10 @@ const QUIZZ_API = "https://mock-api.driven.com.br/api/v4/buzzquizz";
 let quizzesData = null;
 let listaRespostas = [];
 
+let createdQuizz = {};
+let quizzInfo = null;
+
+
 function pegarDadosAPI() {
     const promessa = axios.get("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes");
 
@@ -197,6 +201,42 @@ function clicaResposta(elemento){
     
     console.log(todasRespostasTexto)
     
+}
+
+
+function fillQuizzInfo() {
+    const inputs = document.querySelectorAll('.criacao-info form input');
+    const inputValues = [...inputs].map(input => input.value);
+    
+    quizzInfo = {
+        title: inputValues[0],
+        image: inputValues[1],
+        numQuestions: parseInt(inputValues[2]),
+        numLevels: parseInt(inputValues[3])
+    };
+    console.log(quizzInfo);
+    
+    const validTitle = quizzInfo.title.length >= 20 && quizzInfo.title.length <= 65;
+    const validImage = validateURL(quizzInfo.image);
+    const validQuestions = quizzInfo.numQuestions >= 3 && Number.isInteger(quizzInfo.numQuestions);
+    const validLevels = quizzInfo.numLevels >= 2 && Number.isInteger(quizzInfo.numLevels);
+    console.log(validTitle);
+
+    if (validTitle && validImage && validQuestions && validLevels) {
+        document.querySelector('.criacao-info').classList.toggle('escondido');
+        document.querySelector('.criacao-perguntas').classList.toggle('escondido');
+    } else {
+        alert('Preencha os dados corretamente');
+    }
+}
+
+function validateURL(string) {
+    //url needs to have 'http(s)' or 'www.', and '.(file extension)'
+    const regexURL = /^(http(s)?:\/\/)|(www\.)/;
+    const regexImage = /\.(jpeg|jpg|png|gif|svg)$/;
+    const isValid = regexURL.test(string) && regexImage.test(string);
+
+    return isValid;
 }
 
 

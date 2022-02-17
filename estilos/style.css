@@ -390,8 +390,7 @@ label {
     margin: 20px 0;
     align-self: flex-start;
 }
-
-.tela03 button {
+form button {
     width: 324px;
     height: 54px;
     border: none;
@@ -402,6 +401,18 @@ label {
     font-weight: 400;
     margin: 50px 0;
 }
+
+/* .tela03 button {
+    width: 324px;
+    height: 54px;
+    border: none;
+    border-radius: 15px;
+    background-color: var(--cor-vermelho);
+    color: #fff5f4;
+    font-size: 18px;
+    font-weight: 400;
+    margin: 50px 0;
+} */
 .tela03 .container-botoes {
     width: 100%;
     display: flex;

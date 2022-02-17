@@ -25,7 +25,7 @@
     <main>
         <!--layout tela 1-->
 
-        <section class="tela01 ">
+        <section class="tela01">
         </section>
 
         <!--layout tela 2-->
@@ -39,15 +39,15 @@
                 <div class="criacao-titulo">
                     <h2>Começe pelo começo</h2>
                 </div>
-                <form>
-                    <input type="text" name="titulo-quizz" id="titulo-quizz" placeholder="Título do seu quizz">
-                    <input type="url" name="url-quizz" id="url-quizz" placeholder="URL da imagem do seu quizz">
-                    <input type="number" name="qtd-perguntas" id="qtd-perguntas" placeholder="Quantidade de perguntas do quizz">
-                    <input type="number" name="qtd-niveis" id="qtd-niveis" placeholder="Quantidade de níveis do quizz">
+                <form onsubmit="fillQuizzInfo();return false">
+                    <input type="text" minlength="20" maxlength="65" name="titulo-quizz" id="titulo-quizz" placeholder="Título do seu quizz" required>
+                    <input type="url" name="url-quizz" id="url-quizz" placeholder="URL da imagem do seu quizz" required>
+                    <input type="number" min="3" name="qtd-perguntas" id="qtd-perguntas" placeholder="Quantidade de perguntas do quizz" required>
+                    <input type="number" min="2" name="qtd-niveis" id="qtd-niveis" placeholder="Quantidade de níveis do quizz" required>
+                    <button>
+                        Prosseguir pra criar perguntas
+                    </button>
                 </form>
-                <button class="proximo-passo">
-                    Prosseguir pra criar perguntas
-                </button>
             </section>
             <!-- layout tela 3.2: perguntas -->
             <section class="criacao-perguntas">
@@ -64,11 +64,11 @@
                             <input type="text" name="texto-pergunta" id="texto-pergunta" placeholder="Texto da pergunta">
                             <input type="text" name="cor-pergunta" id="cor-pergunta" placeholder="Cor de fundo da pergunta">
                             
-                            <label for="resposta-correta">Resposta correta</label>
+                            <label>Resposta correta</label>
                             <input type="text" name="resposta-correta" id="resposta-correta" placeholder="Resposta correta">
                             <input type="url" name="url-correta" id="url-correta" placeholder="URL da imagem">
                             
-                            <label for="respostas-incorretas">Respostas incorretas</label>
+                            <label>Respostas incorretas</label>
                             <input type="text" name="resposta-incorreta01" id="resposta-incorreta02" placeholder="Resposta incorreta 1">
                             <input type="url" name="url-incorreta01" id="url-incorreta01" placeholder="URL da imagem 1">
                             <input type="text" name="resposta-incorreta01" id="resposta-incorreta02" placeholder="Resposta incorreta 2">
