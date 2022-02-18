@@ -330,7 +330,7 @@ function displayQuizzQuestions() {
     for (let i=0; i<quizzInfo.numQuestions; i++) {
         questionList.innerHTML += `
         <li>
-            <div class="pergunta-form" onclick="toggleQuestion(this)">
+            <div class="pergunta-form" onclick="toggleItem(this)">
                 <h2>Pergunta ${i+1}</h2>
                 <ion-icon name="create-outline"></ion-icon>
             </div>
@@ -357,7 +357,6 @@ function displayQuizzQuestions() {
 }
 
 function fillQuizzQuestions(event) {  /* too many loops? */
-    console.log(createdQuizz);
     event.preventDefault();
     const questionNodes = document.querySelectorAll('.criacao-perguntas .pergunta-info');
 
@@ -396,8 +395,7 @@ function fillQuizzQuestions(event) {  /* too many loops? */
         createdQuizz.questions = questionsList;
         document.querySelector('.criacao-perguntas').classList.toggle('escondido');
         document.querySelector('.criacao-niveis').classList.toggle('escondido');
-
-        console.log(createdQuizz);
+        displayQuizzLevels();
     } else {
         alert('Preencha os dados corretamente');
     }
@@ -405,7 +403,6 @@ function fillQuizzQuestions(event) {  /* too many loops? */
 }
 
 function validateQuestionInputs(questionsList) {
-    console.log(questionsList);
     const regexColor = /^#[0-9a-fA-F]{6}$/;
     
     for (let i=0; i<questionsList.length; i++) {
@@ -426,7 +423,7 @@ function validateQuestionInputs(questionsList) {
     return true;
 }
 
-function toggleQuestion(elem) {
+function toggleItem(elem) {
     const questionsInfo = elem.nextElementSibling;
     questionsInfo.classList.toggle('escondido');
     elem.querySelector('ion-icon').classList.toggle('escondido');
@@ -438,6 +435,69 @@ function validateURL(string) {
     const isValid = regexURL.test(string) && regexImage.test(string);
 
     return isValid;
+}
+
+function displayQuizzLevels() {
+    const levels = document.querySelector('.criacao-niveis ul');
+    for (let i=0; i<quizzInfo.numLevels; i++) {
+        levels.innerHTML += `
+            <li>
+                <div class="pergunta-form" onclick="toggleItem(this)">
+                    <h2>Nível ${i+1}</h2>
+                    <ion-icon name="create-outline"></ion-icon>
+                </div>
+                <div class="pergunta-info escondido">
+                    <input type="text" minlength="10" name="titulo-nivel" id="titulo-nivel" placeholder="Título do nível" required value="titulo no nivel meu">
+                    <input type="number" min="0" max="100" name="acerto-nivel" id="acerto-nivel" placeholder="% de acerto mínima" required value=0>
+                    <input type="url" name="url-nivel" id="url-nivel" placeholder="URL da imagem do nível" required value="https://http.cat/411.jpg">
+                    <textarea name="descricao-nivel" minlength="30" id="descricao-nivel" cols="30" rows="10" placeholder="Descrição do nível" required>isso aqui e a descricao do nivel mais comprida pq e uma caixa de texto sabe ne po</textarea>
+                </div>
+            </li>
+        `;
+    }
+}
+
+function fillQuizzLevels(event) {
+    event.preventDefault();
+    const levelNodes = document.querySelectorAll('.criacao-niveis .pergunta-info');
+
+    const levelList = [];
+    for (i=0; i<levelNodes.length; i++) {
+        const node = levelNodes[i];
+        
+        const level = {
+            title: node.querySelector('#titulo-nivel').value,
+            image: node.querySelector('#url-nivel').value,
+            text: node.querySelector('#descricao-nivel').value,
+            minValue: parseInt(node.querySelector('#acerto-nivel').value)
+        };
+
+        levelList.push(level);
+    }
+    if (validateLevelInputs(levelList)) {
+        createdQuizz.levels = levelList;
+        document.querySelector('.criacao-niveis').classList.toggle('escondido');
+        document.querySelector('.criacao-sucesso').classList.toggle('escondido');
+    } else {
+        alert('Preencha os dados corretamente');
+    }
+}
+
+function validateLevelInputs(levelList) {
+    for (let i=0; i<levelList; i++) {
+        const level = levelList[i];
+        const validTitle = level.title.length >= 10;
+        const validMin = level.minValue >= 0 && level.minValue <= 100 && Number.isInteger(level.minValue);
+        const validText = level.text.length >= 30;
+
+        if (!(validTitle && validMin && validText)) return false;
+    }
+
+    const haveZero = levelList.find(level => level.minValue === 0);
+    const notZero = levelList.find(level => level.minValue !== 0);
+    if (haveZero && notZero) {
+        return true;
+    } else return false;
 }
 
 
