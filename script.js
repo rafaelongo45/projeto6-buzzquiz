@@ -1,6 +1,10 @@
 const QUIZZ_API = "https://mock-api.driven.com.br/api/v4/buzzquizz";
 let quizzesData = null;
 let listaRespostas = [];
+let arrayLevels = [];
+let clicks = 0;
+let acertos = 0;
+let porcentagemAcertos = null;
 
 let createdQuizz = {};
 let quizzInfo = null;
@@ -113,14 +117,15 @@ function renderizaTela02(data) {
         </section>
 
         <div class="container-botoes">
-            <button class="botao-reiniciar">Reiniciar Quizz</button>
-            <button class="botao-home">Voltar pra home</button>
+            <button class="botao-reiniciar" onclick = "restartQuizz(this)">Reiniciar Quizz</button>
+            <button class="botao-home" onclick = "backHome()">Voltar pra home</button>
         </div>
     `;
     const listaPerguntas = document.querySelector('.lista-perguntas');
     const resultado = document.querySelector('.resultado');
 
     const perguntasSite = data.questions;
+    const levels = data.levels;
 
     for (let i = 0; i < perguntasSite.length; i++) {
         listaPerguntas.innerHTML +=
@@ -139,11 +144,17 @@ function renderizaTela02(data) {
     
     const containerRespostas = document.querySelectorAll('.container-respostas')
 
-    
+
+    for (let i = 0; i < levels.length; i++){
+        arrayLevels.push(levels[i]);
+    }
+
+    console.log(arrayLevels)
+
     for (let i = 0; i < containerRespostas.length; i++){
         listaRespostas.push([])
         for (let j = 0; j < perguntasSite[i].answers.length; j++){
-            listaRespostas[i].push({imagem: perguntasSite[i].answers[j].image, texto: perguntasSite[i].answers[j].text, acertou: perguntasSite[i].answers[j].isCorrectAnswer});
+            listaRespostas[i].push({imagem: perguntasSite[i].answers[j].image, texto: perguntasSite[i].answers[j].text, acertou: perguntasSite[i].answers[j].isCorrectAnswer, });
         }
      
     }
@@ -158,7 +169,7 @@ function renderizaTela02(data) {
             `
                 <li class="resposta" onclick = "clicaResposta(this)">
                 <img src="${listaRespostas[i][j].imagem}" alt="">
-                <p>${listaRespostas[i][j].texto}</p>
+                <p>${listaRespostas[i][j].texto} <span class = "">${listaRespostas[i][j].acertou}</span></p>
                 </li>
             `
         }
@@ -166,20 +177,9 @@ function renderizaTela02(data) {
     
     console.log(listaRespostas);
 
-    resultado.innerHTML = `
-    <div class="titulo-resultado">
-        <h2>88% de acerto: Você é praticamente um aluno de Hogwarts!</h2>
-    </div>
-    <div class="resultado-mensagem">
-        <img src="./imagens/image 10.png" alt="">
-        <p>Parabéns Potterhead! Bem-vindx a Hogwarts, aproveite o loop infinito de comida e clique no botão
-        abaixo para usar o vira-tempo e reiniciar este teste.</p>
-    </div>
-    `
-
     tela01.classList.add('escondido');
     tela02.classList.remove('escondido');
-
+    scrollTo(0,0);
 }
 
 function comparador() { 
@@ -190,6 +190,8 @@ function clicaResposta(elemento){
     const containerElemento = elemento.parentNode;
     const todasRespostas = containerElemento.querySelectorAll('.resposta');
     const todasRespostasTexto = containerElemento.querySelectorAll('p');
+    const elementSpan = elemento.querySelector('span');
+
     for (let i = 0; i < todasRespostas.length; i++){
         if(todasRespostas[i] === elemento){
 
@@ -198,9 +200,107 @@ function clicaResposta(elemento){
         }
         todasRespostas[i].onclick = null;
     }
+
+    for (let i = 0; i < todasRespostasTexto.length; i++){
+        if (todasRespostasTexto[i].querySelector('span').innerText === 'true'){
+            todasRespostasTexto[i].classList.add('certo')
+        }else{
+            todasRespostasTexto[i].classList.add('errado')
+        }
+    }
+
+    if (elementSpan.innerText === 'true'){
+        acertos += 1;
+    }
     
-    console.log(todasRespostasTexto)
+    const questionsArray = containerElemento.parentNode.parentNode.querySelectorAll('.pergunta');
+    console.log(questionsArray)
+
+    if (clicks === questionsArray.length - 1){
+        const resultado = document.querySelector('.resultado');
+        setTimeout( () => renderResults(acertos, questionsArray), 2000);
+        setTimeout(() => resultado.scrollIntoView(), 2050)
+        console.log(porcentagemAcertos)
+        clicks = 0;
+        return
+    }
+
+    setTimeout( () => {scrollNextQuestion(questionsArray[clicks])}, 2000);
+    clicks += 1;
+    console.log(clicks)
     
+}
+
+function scrollNextQuestion(questionsArray){
+    questionsArray.scrollIntoView({block: "center"});
+}
+
+
+function renderResults(acertos, questionsArray){
+    const resultado = document.querySelector('.resultado');
+    calculaAcertos(acertos, questionsArray.length);
+
+   for (let i = 0; i < arrayLevels.length; i++){
+       if (i !== arrayLevels.length - 1 && porcentagemAcertos >= Math.round(arrayLevels[i].minValue) && porcentagemAcertos <= Math.round(arrayLevels[i + 1].minValue)){
+        resultado.innerHTML = `
+        <div class="titulo-resultado">
+            <h2>${porcentagemAcertos}% de acerto: ${arrayLevels[i].title}</h2>
+        </div>
+        <div class="resultado-mensagem">
+            <img src="${arrayLevels[i].image}" alt="">
+            <p>${arrayLevels[i].text}</p>
+        </div>
+        `
+       }else if(i === arrayLevels.length -1 && porcentagemAcertos >= Math.round(arrayLevels[i].minValue)){
+        resultado.innerHTML = `
+        <div class="titulo-resultado">
+            <h2>${porcentagemAcertos}% de acerto: ${arrayLevels[i].title}</h2>
+        </div>
+        <div class="resultado-mensagem">
+            <img src="${arrayLevels[i].image}" alt="">
+            <p>${arrayLevels[i].text}</p>
+        </div>
+        `
+       }
+   }
+}
+
+function calculaAcertos(acertos, questionsLength){
+    porcentagemAcertos = Math.round((acertos/questionsLength) * 100);
+
+}
+
+function restartQuizz(){
+    
+    clicks = 0;
+    acertos = 0;
+    porcentagemAcertos = null;
+    const todasRespostas = document.querySelectorAll('.resposta');
+
+    for (let i = 0; i < todasRespostas.length; i++){
+        if(todasRespostas[i].classList.contains('deixa-esbranquiçado')){
+            todasRespostas[i].classList.remove('deixa-esbranquiçado')
+        }
+        todasRespostas[i].onclick = "clicaResposta(this)";
+    }
+
+    console.log(todasRespostas[0])
+
+    scrollTo(0,0);
+
+/**    for (let i = 0; i < todasRespostasTexto.length; i++){
+        if (todasRespostasTexto[i].querySelector('span').innerText === 'true'){
+            todasRespostasTexto[i].classList.add('certo')
+        }else{
+            todasRespostasTexto[i].classList.add('errado')
+        }
+    } */
+    
+
+}
+
+function backHome(){
+    window.location.reload();
 }
 
 
