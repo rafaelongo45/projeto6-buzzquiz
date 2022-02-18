@@ -228,27 +228,46 @@ function scrollNextQuestion(questionsArray){
 
 function renderResults(acertos, questionsArray){
     const resultado = document.querySelector('.resultado');
+    let levels = [];
+    let orderedLevels = [];
     calculaAcertos(acertos, questionsArray.length);
+    for (let i = 0; i < arrayLevels.length; i++){
+        levels.push(parseInt(arrayLevels[i].minValue));
+    }
 
-   for (let i = 0; i < arrayLevels.length; i++){
-       if (i !== arrayLevels.length - 1 && porcentagemAcertos >= Math.round(arrayLevels[i].minValue) && porcentagemAcertos <= Math.round(arrayLevels[i + 1].minValue)){
+    levels = levels.sort( function (a,b) { return a-b})
+
+    for (let i = 0; i < levels.length; i++){
+        for (let x = 0; x < arrayLevels.length; x ++){
+            if (levels[i] === parseInt(arrayLevels[x].minValue)){
+                orderedLevels.push(arrayLevels[x]);
+            }
+        }
+    }
+    
+
+    console.log(levels)
+    console.log(orderedLevels)
+
+   for (let i = 0; i < orderedLevels.length; i++){
+       if (i !== orderedLevels.length - 1 && porcentagemAcertos >= Math.round(orderedLevels[i].minValue) && porcentagemAcertos <= Math.round(orderedLevels[i + 1].minValue)){
         resultado.innerHTML = `
         <div class="titulo-resultado">
-            <h2>${porcentagemAcertos}% de acerto: ${arrayLevels[i].title}</h2>
+            <h2>${porcentagemAcertos}% de acerto: ${orderedLevels[i].title}</h2>
         </div>
         <div class="resultado-mensagem">
-            <img src="${arrayLevels[i].image}" alt="">
-            <p>${arrayLevels[i].text}</p>
+            <img src="${orderedLevels[i].image}" alt="">
+            <p>${orderedLevels[i].text}</p>
         </div>
         `
-       }else if(i === arrayLevels.length -1 && porcentagemAcertos >= Math.round(arrayLevels[i].minValue)){
+       }else if(i === orderedLevels.length -1 && porcentagemAcertos >= Math.round(orderedLevels[i].minValue)){
         resultado.innerHTML = `
         <div class="titulo-resultado">
-            <h2>${porcentagemAcertos}% de acerto: ${arrayLevels[i].title}</h2>
+            <h2>${porcentagemAcertos}% de acerto: ${orderedLevels[i].title}</h2>
         </div>
         <div class="resultado-mensagem">
-            <img src="${arrayLevels[i].image}" alt="">
-            <p>${arrayLevels[i].text}</p>
+            <img src="${orderedLevels[i].image}" alt="">
+            <p>${orderedLevels[i].text}</p>
         </div>
         `
        }
