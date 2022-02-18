@@ -12,8 +12,6 @@ let quizzInfo = null;
 
 function pegarDadosAPI() {
     const promessa = axios.get("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes");
-
-    console.log(promessa);
     promessa.then(pegaQuizz);
     promessa.catch();
 }
@@ -21,8 +19,6 @@ function pegarDadosAPI() {
 function pegaQuizz(elemento) {
     quizzesData = elemento.data;
     renderizaTela01(quizzesData);
-    console.log(quizzesData);
-
 }
 
 function renderizaTela01(dadoSite) {
@@ -122,7 +118,6 @@ function renderizaTela02(data) {
         </div>
     `;
     const listaPerguntas = document.querySelector('.lista-perguntas');
-    const resultado = document.querySelector('.resultado');
 
     const perguntasSite = data.questions;
     const levels = data.levels;
@@ -175,8 +170,6 @@ function renderizaTela02(data) {
         }
     }
     
-    console.log(listaRespostas);
-
     tela01.classList.add('escondido');
     tela02.classList.remove('escondido');
     scrollTo(0,0);
@@ -198,7 +191,7 @@ function clicaResposta(elemento){
         }else{
             todasRespostas[i].classList.add('deixa-esbranquiçado')
         }
-        todasRespostas[i].onclick = null;
+        todasRespostas[i].removeAttribute("onclick")
     }
 
     for (let i = 0; i < todasRespostasTexto.length; i++){
@@ -214,7 +207,6 @@ function clicaResposta(elemento){
     }
     
     const questionsArray = containerElemento.parentNode.parentNode.querySelectorAll('.pergunta');
-    console.log(questionsArray)
 
     if (clicks === questionsArray.length - 1){
         const resultado = document.querySelector('.resultado');
@@ -226,9 +218,7 @@ function clicaResposta(elemento){
     }
 
     setTimeout( () => {scrollNextQuestion(questionsArray[clicks])}, 2000);
-    clicks += 1;
-    console.log(clicks)
-    
+    clicks += 1;    
 }
 
 function scrollNextQuestion(questionsArray){
@@ -267,36 +257,37 @@ function renderResults(acertos, questionsArray){
 
 function calculaAcertos(acertos, questionsLength){
     porcentagemAcertos = Math.round((acertos/questionsLength) * 100);
-
 }
 
 function restartQuizz(){
-    
     clicks = 0;
     acertos = 0;
     porcentagemAcertos = null;
     const todasRespostas = document.querySelectorAll('.resposta');
+    const containers = document.querySelectorAll('.container-respostas');
+    const resultado = document.querySelector('.resultado');
 
     for (let i = 0; i < todasRespostas.length; i++){
         if(todasRespostas[i].classList.contains('deixa-esbranquiçado')){
             todasRespostas[i].classList.remove('deixa-esbranquiçado')
         }
-        todasRespostas[i].onclick = "clicaResposta(this)";
+        todasRespostas[i].setAttribute("onclick", "clicaResposta(this)")
     }
 
-    console.log(todasRespostas[0])
+    for (let i = 0; i < containers.length; i++){
+        let containerP = containers[i].querySelectorAll('p');
+        for(let x = 0; x < containerP.length; x++){
+            if (containerP[x].classList.contains('errado') || containerP[x].classList.contains('certo')){
+                containerP[x].classList.remove('certo')
+                containerP[x].classList.remove('errado')
+            }
+        }
+        
+    }
+
+    resultado.innerHTML = "";
 
     scrollTo(0,0);
-
-/**    for (let i = 0; i < todasRespostasTexto.length; i++){
-        if (todasRespostasTexto[i].querySelector('span').innerText === 'true'){
-            todasRespostasTexto[i].classList.add('certo')
-        }else{
-            todasRespostasTexto[i].classList.add('errado')
-        }
-    } */
-    
-
 }
 
 function backHome(){
