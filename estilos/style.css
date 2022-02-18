@@ -338,7 +338,7 @@ main{
         color: #000;
     }
     .tela03 .pergunta-form {
-        width: 95%;
+        width: 100%;
         height: 74px;
         display: flex;
         justify-content: space-between;
@@ -382,6 +382,7 @@ textarea {
     padding-top: 10px;
 }
 label {
+    display: block;
     width: 100%;
     font-size: 20px;
     font-weight: 700;
@@ -402,17 +403,6 @@ form button {
     margin: 50px 0;
 }
 
-/* .tela03 button {
-    width: 324px;
-    height: 54px;
-    border: none;
-    border-radius: 15px;
-    background-color: var(--cor-vermelho);
-    color: #fff5f4;
-    font-size: 18px;
-    font-weight: 400;
-    margin: 50px 0;
-} */
 .tela03 .container-botoes {
     width: 100%;
     display: flex;

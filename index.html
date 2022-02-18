@@ -25,7 +25,7 @@
     <main>
         <!--layout tela 1-->
 
-        <section class="tela01">
+        <section class="tela01 escondido">
         </section>
 
         <!--layout tela 2-->
@@ -33,69 +33,36 @@
         <section class="tela02 escondido">
         </section>
 
-        <section class="tela03 escondido">
+        <section class="tela03">
             <!-- layout tela 3.1: info básica -->
             <section class="criacao-info">
                 <div class="criacao-titulo">
                     <h2>Começe pelo começo</h2>
                 </div>
-                <form onsubmit="fillQuizzInfo();return false">
-                    <input type="text" minlength="20" maxlength="65" name="titulo-quizz" id="titulo-quizz" placeholder="Título do seu quizz" required>
-                    <input type="url" name="url-quizz" id="url-quizz" placeholder="URL da imagem do seu quizz" required>
-                    <input type="number" min="3" name="qtd-perguntas" id="qtd-perguntas" placeholder="Quantidade de perguntas do quizz" required>
-                    <input type="number" min="2" name="qtd-niveis" id="qtd-niveis" placeholder="Quantidade de níveis do quizz" required>
+                <form onsubmit="fillQuizzInfo(event)">
+                    <input type="text" minlength="20" maxlength="65" name="titulo-quizz" id="titulo-quizz" placeholder="Título do seu quizz" required value="titulo legal do quizz">
+                    <input type="url" name="url-quizz" id="url-quizz" placeholder="URL da imagem do seu quizz" required value="https://gofrag.ru/images/73/gas_station_simulator-1.jpg">
+                    <input type="number" min="3" name="qtd-perguntas" id="qtd-perguntas" placeholder="Quantidade de perguntas do quizz" required value="3">
+                    <input type="number" min="2" name="qtd-niveis" id="qtd-niveis" placeholder="Quantidade de níveis do quizz" required value="2">
                     <button>
                         Prosseguir pra criar perguntas
                     </button>
                 </form>
             </section>
             <!-- layout tela 3.2: perguntas -->
-            <section class="criacao-perguntas">
+            <section class="criacao-perguntas escondido">
                 <div class="criacao-titulo">
                     <h2>Crie suas perguntas</h2>
                 </div>
-                <ul>
-                    <li>
-                        <div class="pergunta-form">
-                            <h2>Pergunta 1</h2>
-                            <ion-icon name="create-outline" class="escondido"></ion-icon>
-                        </div>
-                        <form>
-                            <input type="text" name="texto-pergunta" id="texto-pergunta" placeholder="Texto da pergunta">
-                            <input type="text" name="cor-pergunta" id="cor-pergunta" placeholder="Cor de fundo da pergunta">
-                            
-                            <label>Resposta correta</label>
-                            <input type="text" name="resposta-correta" id="resposta-correta" placeholder="Resposta correta">
-                            <input type="url" name="url-correta" id="url-correta" placeholder="URL da imagem">
-                            
-                            <label>Respostas incorretas</label>
-                            <input type="text" name="resposta-incorreta01" id="resposta-incorreta02" placeholder="Resposta incorreta 1">
-                            <input type="url" name="url-incorreta01" id="url-incorreta01" placeholder="URL da imagem 1">
-                            <input type="text" name="resposta-incorreta01" id="resposta-incorreta02" placeholder="Resposta incorreta 2">
-                            <input type="url" name="url-incorreta01" id="url-incorreta01" placeholder="URL da imagem 2">
-                            <input type="text" name="resposta-incorreta01" id="resposta-incorreta02" placeholder="Resposta incorreta 3">
-                            <input type="url" name="url-incorreta01" id="url-incorreta01" placeholder="URL da imagem 3">
-                        </form>
-                    </li>
-                    <li>
-                        <div class="pergunta-form">
-                            <h2>Pergunta 2</h2>
-                            <ion-icon name="create-outline"></ion-icon>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="pergunta-form">
-                            <h2>Pergunta 3</h2>
-                            <ion-icon name="create-outline"></ion-icon>
-                        </div>
-                    </li>
-                </ul>
-                <button class="proximo-passo">
-                    Prosseguir pra criar níveis
-                </button>
+                <form onsubmit="fillQuizzQuestions(event)">
+                    <ul></ul>
+                    <button class="proximo-passo">
+                        Prosseguir pra criar níveis
+                    </button>
+                </form>
             </section>
             <!-- layout tela 3.3: níveis -->
-            <section class="criacao-niveis">
+            <section class="criacao-niveis escondido">
                 <div class="criacao-titulo">
                     <h2>Agora, decida os níveis!</h2>
                 </div>
@@ -130,7 +97,7 @@
                 </button>
             </section>
             <!-- layout tela 3.4: sucesso -->
-            <section class="criacao-sucesso">
+            <section class="criacao-sucesso escondido">
                 <div class="criacao-titulo">
                     <h2>Seu quizz está pronto!</h2>
                 </div>
