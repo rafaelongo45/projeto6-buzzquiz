@@ -336,16 +336,16 @@ function displayQuizzQuestions() {
             </div>
 
             <div class="pergunta-info escondido">
-                <input type="text" minlength="20" name="texto-pergunta" id="texto-pergunta" placeholder="Texto da pergunta" required value="titulo da pergunta maneira">
-                <input type="text" pattern="#[0-9a-fA-F]{6}" name="cor-pergunta" id="cor-pergunta" placeholder="Cor de fundo da pergunta" required value="#123456">
+                <input type="text" minlength="20" name="texto-pergunta" id="texto-pergunta" placeholder="Texto da pergunta" required>
+                <input type="text" pattern="#[0-9a-fA-F]{6}" name="cor-pergunta" id="cor-pergunta" placeholder="Cor de fundo da pergunta" required">
                 
                 <label>Resposta correta</label>
-                <input type="text" name="resposta-correta" id="resposta-correta" placeholder="Resposta correta" required value="resposta correta">
-                <input type="url" name="url-correta" id="url-correta" placeholder="URL da imagem" required value="https://gofrag.ru/images/73/gas_station_simulator-1.jpg">
+                <input type="text" name="resposta-correta" id="resposta-correta" placeholder="Resposta correta" required>
+                <input type="url" name="url-correta" id="url-correta" placeholder="URL da imagem" required>
                 
                 <label>Respostas incorretas</label>
-                <input type="text" name="resposta-incorreta" id="resposta-incorreta" placeholder="Resposta incorreta 1" required value="resposta incorreta po">
-                <input type="url" name="url-incorreta" id="url-incorreta" placeholder="URL da imagem 1" required value="https://gofrag.ru/images/73/gas_station_simulator-1.jpg">
+                <input type="text" name="resposta-incorreta" id="resposta-incorreta" placeholder="Resposta incorreta 1" required>
+                <input type="url" name="url-incorreta" id="url-incorreta" placeholder="URL da imagem 1" required>
                 <input type="text" name="resposta-incorreta" id="resposta-incorreta" placeholder="Resposta incorreta 2">
                 <input type="url" name="url-incorreta" id="url-incorreta" placeholder="URL da imagem 2">
                 <input type="text" name="resposta-incorreta" id="resposta-incorreta" placeholder="Resposta incorreta 3">
@@ -447,10 +447,10 @@ function displayQuizzLevels() {
                     <ion-icon name="create-outline"></ion-icon>
                 </div>
                 <div class="pergunta-info escondido">
-                    <input type="text" minlength="10" name="titulo-nivel" id="titulo-nivel" placeholder="Título do nível" required value="titulo no nivel meu">
-                    <input type="number" min="0" max="100" name="acerto-nivel" id="acerto-nivel" placeholder="% de acerto mínima" required value=0>
-                    <input type="url" name="url-nivel" id="url-nivel" placeholder="URL da imagem do nível" required value="https://http.cat/411.jpg">
-                    <textarea name="descricao-nivel" minlength="30" id="descricao-nivel" cols="30" rows="10" placeholder="Descrição do nível" required>isso aqui e a descricao do nivel mais comprida pq e uma caixa de texto sabe ne po</textarea>
+                    <input type="text" minlength="10" name="titulo-nivel" id="titulo-nivel" placeholder="Título do nível" required>
+                    <input type="number" min="0" max="100" name="acerto-nivel" id="acerto-nivel" placeholder="% de acerto mínima" required>
+                    <input type="url" name="url-nivel" id="url-nivel" placeholder="URL da imagem do nível" required>
+                    <textarea name="descricao-nivel" minlength="30" id="descricao-nivel" cols="30" rows="10" placeholder="Descrição do nível" required></textarea>
                 </div>
             </li>
         `;
@@ -476,8 +476,7 @@ function fillQuizzLevels(event) {
     }
     if (validateLevelInputs(levelList)) {
         createdQuizz.levels = levelList;
-        document.querySelector('.criacao-niveis').classList.toggle('escondido');
-        document.querySelector('.criacao-sucesso').classList.toggle('escondido');
+        sendQuizz();
     } else {
         alert('Preencha os dados corretamente');
     }
@@ -498,6 +497,43 @@ function validateLevelInputs(levelList) {
     if (haveZero && notZero) {
         return true;
     } else return false;
+}
+
+function sendQuizz() {
+    const promise = axios.post(`${QUIZZ_API}/quizzes`, createdQuizz);
+    promise.then((response) => {
+        console.log(response.data);
+        renderSucess(response.data);        
+    });
+    promise.catch((error) => {
+        console.log(error.response);
+    });
+}
+
+function renderSucess(quizz) {
+    document.querySelector('.criacao-niveis').classList.toggle('escondido');
+    document.querySelector('.criacao-sucesso').classList.toggle('escondido');
+
+    const sucess = document.querySelector('.criacao-sucesso');
+    sucess.innerHTML = `
+        <div class="criacao-titulo">
+            <h2>Seu quizz está pronto!</h2>
+        </div>
+        <div class="quizz-thumb" onclick="renderCreatedQuizz()">
+            <img src="${quizz.image}" alt="">
+            <p>${quizz.title}</p>
+            <span class="id escondido">${quizz.id}</span>
+        </div>
+        <div class="container-botoes">
+            <button class="botao-vermelho" onclick="renderCreatedQuizz()">Acessar Quizz</button>
+            <button class="botao-home" onclick="backHome()">Voltar pra home</button>
+        </div>        
+    `;
+}
+
+function renderCreatedQuizz() {
+    document.querySelector('.criacao-sucesso').classList.toggle('escondido');
+    renderizaTela02(createdQuizz);
 }
 
 

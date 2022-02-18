@@ -25,7 +25,7 @@
     <main>
         <!--layout tela 1-->
 
-        <section class="tela01 escondido">
+        <section class="tela01">
         </section>
 
         <!--layout tela 2-->
@@ -33,17 +33,17 @@
         <section class="tela02 escondido">
         </section>
 
-        <section class="tela03">
+        <section class="tela03 escondido">
             <!-- layout tela 3.1: info básica -->
             <section class="criacao-info">
                 <div class="criacao-titulo">
                     <h2>Começe pelo começo</h2>
                 </div>
                 <form onsubmit="fillQuizzInfo(event)">
-                    <input type="text" minlength="20" maxlength="65" name="titulo-quizz" id="titulo-quizz" placeholder="Título do seu quizz" required value="titulo legal do quizz">
-                    <input type="url" name="url-quizz" id="url-quizz" placeholder="URL da imagem do seu quizz" required value="https://gofrag.ru/images/73/gas_station_simulator-1.jpg">
-                    <input type="number" min="3" name="qtd-perguntas" id="qtd-perguntas" placeholder="Quantidade de perguntas do quizz" required value="3">
-                    <input type="number" min="2" name="qtd-niveis" id="qtd-niveis" placeholder="Quantidade de níveis do quizz" required value="2">
+                    <input type="text" minlength="20" maxlength="65" name="titulo-quizz" id="titulo-quizz" placeholder="Título do seu quizz" required>
+                    <input type="url" name="url-quizz" id="url-quizz" placeholder="URL da imagem do seu quizz" required>
+                    <input type="number" min="3" name="qtd-perguntas" id="qtd-perguntas" placeholder="Quantidade de perguntas do quizz" required>
+                    <input type="number" min="2" name="qtd-niveis" id="qtd-niveis" placeholder="Quantidade de níveis do quizz" required>
                     <button>
                         Prosseguir pra criar perguntas
                     </button>
@@ -74,19 +74,7 @@
                 </form>
             </section>
             <!-- layout tela 3.4: sucesso -->
-            <section class="criacao-sucesso escondido">
-                <div class="criacao-titulo">
-                    <h2>Seu quizz está pronto!</h2>
-                </div>
-                <div class="quizz-thumb">
-                    <img src="imagens/wallpaper.jpg" alt="imagem teste">
-                    <p>O quão Potterhead é você?</p>
-                </div>
-                <div class="container-botoes">
-                    <button class="botao-vermelho">Acessar Quizz</button>
-                    <button class="botao-home">Voltar pra home</button>
-                </div>
-            </section>
+            <section class="criacao-sucesso escondido"></section>
         </section>
 
     </main>
