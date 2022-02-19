@@ -117,7 +117,7 @@ function renderizaTela02(data) {
         </section>
 
         <div class="container-botoes">
-            <button class="botao-reiniciar" onclick = "restartQuizz(this)">Reiniciar Quizz</button>
+            <button class="botao-vermelho" onclick = "restartQuizz(this)">Reiniciar Quizz</button>
             <button class="botao-home" onclick = "backHome()">Voltar pra home</button>
         </div>
     `;
@@ -507,7 +507,7 @@ function toggleItem(elem) {
 
 function validateURL(string) {
     const regexURL = /^(http(s)?:\/\/)|(www\.)/;
-    const regexImage = /\.(jpeg|jpg|png|gif|svg)$/;
+    const regexImage = /\.(jpeg|jpg|png|gif|svg)/;
     const isValid = regexURL.test(string) && regexImage.test(string);
 
     return isValid;
