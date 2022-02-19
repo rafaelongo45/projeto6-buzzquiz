@@ -5,6 +5,8 @@ let arrayLevels = [];
 let clicks = 0;
 let acertos = 0;
 let porcentagemAcertos = null;
+let meusQuizzes = [];
+let listaIDMeusQuizzes = [];
 
 let createdQuizz = {};
 let quizzInfo = null;
@@ -24,25 +26,18 @@ function pegaQuizz(elemento) {
 function renderizaTela01(dadoSite) {
     const tela01 = document.querySelector('.tela01')
     tela01.innerHTML = `<!-- Criar quizz -->
-    <div class="criar-quizz ">
+    <div class="criar-quizz escondido">
         
     </div>
 
     <!-- Seus quizzes -->
-    <div class="todos-os-quizzes escondido">
+    <div class="todos-os-quizzes">
         <div>
             <h2>Seus Quizzes</h2>
-            <ion-icon name="add-circle"></ion-icon>
+            <ion-icon name="add-circle" onclick = "createQuizz()"></ion-icon>
         </div>
-        <ul>
-            <li class="quizz-thumb">
-                <img src="./imagens/potter.png" alt="Simpsons imagem">
-                <p>O quão Potterhead é você?</p>
-            </li>
-            <li class="quizz-thumb">
-                <img src="./imagens/ferias.png" alt="Simpsons imagem">
-                <p>É ex-BBB ou ex-De férias com o Ex?</p>
-            </li>
+        <ul class = "quizzes-usuario">
+
         </ul>
     </div>
 
@@ -55,18 +50,27 @@ function renderizaTela01(dadoSite) {
         </ul>
     </div>`
 
-    renderizaQuizzesUsuario(dadoSite)
+    const todosQuizzesUsuario = document.querySelector('.quizzes-usuario');
+
+    renderizaTodosOsMeusQuizzes(todosQuizzesUsuario);
+    renderizaQuizzesUsuario();
     renderizaTodosOsQuizzes(dadoSite);
 }
 
-function renderizaQuizzesUsuario(dadoSite) {
+function renderizaQuizzesUsuario() {
     const janelaCriarQuizz = document.querySelector('.criar-quizz');
+    const janelaSeusQuizzes = document.querySelector('.quizzes-usuario').parentNode;
     janelaCriarQuizz.innerHTML = `
     <p>Você não criou nenhum quizz ainda :(</p>
-    <button>Criar quizz</button>
+    <button onclick = "createQuizz()">Criar quizz</button>
     `
-
-    //se o usuario ja tiver criado quizz fazer a estrutura do Seus quizzes, se não tiver encaixa o que ta em cima no else.
+    if(listaIDMeusQuizzes.length === 0){
+        janelaCriarQuizz.classList.remove('escondido');
+        janelaSeusQuizzes.classList.add('escondido');
+    }else{
+        janelaSeusQuizzes.classList.remove('escondido');
+        janelaCriarQuizz.classList.add('escondido');
+    }
 }
 
 function renderizaTodosOsQuizzes(dadoSite) {
@@ -164,7 +168,7 @@ function renderizaTela02(data) {
             `
                 <li class="resposta" onclick = "clicaResposta(this)">
                 <img src="${listaRespostas[i][j].imagem}" alt="">
-                <p>${listaRespostas[i][j].texto} <span class = "">${listaRespostas[i][j].acertou}</span></p>
+                <p>${listaRespostas[i][j].texto} <span class = "escondido">${listaRespostas[i][j].acertou}</span></p>
                 </li>
             `
         }
@@ -260,7 +264,7 @@ function renderResults(acertos, questionsArray){
             <p>${orderedLevels[i].text}</p>
         </div>
         `
-       }else if(i === orderedLevels.length -1 && porcentagemAcertos >= Math.round(orderedLevels[i].minValue)){
+       }else if(i === orderedLevels.length - 1 && porcentagemAcertos >= Math.round(orderedLevels[i].minValue)){
         resultado.innerHTML = `
         <div class="titulo-resultado">
             <h2>${porcentagemAcertos}% de acerto: ${orderedLevels[i].title}</h2>
@@ -311,6 +315,57 @@ function restartQuizz(){
 
 function backHome(){
     window.location.reload();
+}
+
+function createQuizz(){
+    const firstPage = document.querySelector('.tela01');
+    const createQuizzPage = document.querySelector('.tela03');
+    
+    firstPage.classList.toggle('escondido');
+    createQuizzPage.classList.toggle('escondido');
+
+    createQuizzPage.innerHTML = `<!-- layout tela 3.1: info básica -->
+    <section class="criacao-info">
+        <div class="criacao-titulo">
+            <h2>Começe pelo começo</h2>
+        </div>
+        <form onsubmit="fillQuizzInfo(event)">
+            <input type="text" minlength="20" maxlength="65" name="titulo-quizz" id="titulo-quizz" placeholder="Título do seu quizz" required>
+            <input type="url" name="url-quizz" id="url-quizz" placeholder="URL da imagem do seu quizz" required>
+            <input type="number" min="3" name="qtd-perguntas" id="qtd-perguntas" placeholder="Quantidade de perguntas do quizz" required>
+            <input type="number" min="2" name="qtd-niveis" id="qtd-niveis" placeholder="Quantidade de níveis do quizz" required>
+            <button>
+                Prosseguir pra criar perguntas
+            </button>
+        </form>
+    </section>
+    <!-- layout tela 3.2: perguntas -->
+    <section class="criacao-perguntas escondido">
+        <div class="criacao-titulo">
+            <h2>Crie suas perguntas</h2>
+        </div>
+        <form onsubmit="fillQuizzQuestions(event)">
+            <ul></ul>
+            <button>
+                Prosseguir pra criar níveis
+            </button>
+        </form>
+    </section>
+    <!-- layout tela 3.3: níveis -->
+    <section class="criacao-niveis escondido">
+        <div class="criacao-titulo">
+            <h2>Agora, decida os níveis!</h2>
+        </div>
+        <form onsubmit="fillQuizzLevels(event)">
+            <ul></ul>
+            <button>
+                Finalizar Quizz
+            </button>
+        </form>
+    </section>
+    <!-- layout tela 3.4: sucesso -->
+    <section class="criacao-sucesso escondido"></section>`
+
 }
 
 
@@ -381,7 +436,7 @@ function fillQuizzQuestions(event) {  /* too many loops? */
 
     const questionsList = [];
     for (let i=0; i<quizzInfo.numQuestions; i++) {
-        const inputs = questionNodes[0].querySelectorAll('input');
+        const inputs = questionNodes[i].querySelectorAll('input');
         const inputList = [...inputs].filter(input => input.value);
 
         const question = {
@@ -418,6 +473,8 @@ function fillQuizzQuestions(event) {  /* too many loops? */
     } else {
         alert('Preencha os dados corretamente');
     }
+
+    
 
 }
 
@@ -522,6 +579,10 @@ function sendQuizz() {
     const promise = axios.post(`${QUIZZ_API}/quizzes`, createdQuizz);
     promise.then((response) => {
         console.log(response.data);
+        const quizzString = JSON.stringify(response.data); // localStorage so aceita string. Essa linha transforma todos os dados do quizz criado em string
+        const idQuizz = JSON.stringify(response.data.id); // Essa linha transforma o id do quizz criado em string
+        localStorage.setItem(idQuizz, quizzString); // Essa linha armazena o quizz no computador do usuario
+ 
         renderSucess(response.data);        
     });
     promise.catch((error) => {
@@ -555,5 +616,47 @@ function renderCreatedQuizz() {
     renderizaTela02(createdQuizz);
 }
 
+function pegaQuizzCriado (){
+    for ( let i = 0; i < localStorage.length; i++ ) {
+        listaIDMeusQuizzes.push(localStorage.key(i));
+    }
+    listaIDMeusQuizzes = listaIDMeusQuizzes.sort( function (a,b){return a - b});
+    console.log(listaIDMeusQuizzes)
+}
 
+function listaMeusQuizzes(){
+    for (let i = 0; i < listaIDMeusQuizzes.length; i++ ){
+        meusQuizzes.push((JSON.parse(localStorage.getItem(listaIDMeusQuizzes[i]))));
+    }
+    console.log(meusQuizzes)
+}
+
+function renderizaTodosOsMeusQuizzes(todosQuizzesUsuario){
+
+    for (let i = 0; i < meusQuizzes.length; i++){
+        todosQuizzesUsuario.innerHTML += `
+        <li class="quizz-thumb" onclick = "clicouQuizzUsuario(this)">
+        <img src="${meusQuizzes[i].image}" alt="">
+        <p>${meusQuizzes[i].title} <span class = "id escondido">${meusQuizzes[i].id}</span></p> 
+        </li>
+    `
+    }
+}
+
+function clicouQuizzUsuario(elemento){
+    const id = elemento.querySelector('.id');
+    const idNumero = parseInt(id.innerText);
+    renderizaQuizzUsuarioCLicado(idNumero)
+}
+
+function renderizaQuizzUsuarioCLicado(id) {
+    for (let i = 0; i < meusQuizzes.length; i++) {
+        if (id === meusQuizzes[i].id) {
+            renderizaTela02(meusQuizzes[i]);
+        }
+    }
+}
+
+pegaQuizzCriado();
+listaMeusQuizzes();
 pegarDadosAPI();
