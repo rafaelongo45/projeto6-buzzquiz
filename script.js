@@ -129,8 +129,8 @@ function renderizaTela02(data) {
     for (let i = 0; i < perguntasSite.length; i++) {
         listaPerguntas.innerHTML +=
             `
-        <li class="pergunta ">
-            <div class="titulo-primeira-pergunta">
+        <li class="pergunta">
+            <div class="titulo-pergunta" style="background-color: ${perguntasSite[i].color}">
                 <h2>${perguntasSite[i].title}</h2>
             </div>
 
