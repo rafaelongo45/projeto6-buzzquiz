@@ -7,6 +7,8 @@ let acertos = 0;
 let porcentagemAcertos = null;
 let meusQuizzes = [];
 let listaIDMeusQuizzes = [];
+let listaId = [];
+
 
 let createdQuizz = {};
 let quizzInfo = null;
@@ -25,7 +27,7 @@ function pegaQuizz(elemento) {
 
 function renderizaTela01(dadoSite) {
     const tela01 = document.querySelector('.tela01')
-    tela01.innerHTML = `<!-- Criar quizz -->
+    tela01.innerHTML = `<!-- Criar quizz -->    
     <div class="criar-quizz escondido">
         
     </div>
@@ -34,9 +36,9 @@ function renderizaTela01(dadoSite) {
     <div class="todos-os-quizzes">
         <div>
             <h2>Seus Quizzes</h2>
-            <ion-icon name="add-circle" onclick = "createQuizz()"></ion-icon>
+            <ion-icon name="add-circle" onclick = "createQuizz()" data-identifier="create-quizz"></ion-icon>
         </div>
-        <ul class = "quizzes-usuario">
+        <ul class = "quizzes-usuario" data-identifier="user-quizzes">
 
         </ul>
     </div>
@@ -46,7 +48,7 @@ function renderizaTela01(dadoSite) {
         <div>
             <h2>Todos os Quizzes</h2>
         </div>
-        <ul class = "quizzes-site">
+        <ul class = "quizzes-site" data-identifier="general-quizzes">
         </ul>
     </div>`
 
@@ -62,7 +64,7 @@ function renderizaQuizzesUsuario() {
     const janelaSeusQuizzes = document.querySelector('.quizzes-usuario').parentNode;
     janelaCriarQuizz.innerHTML = `
     <p>Você não criou nenhum quizz ainda :(</p>
-    <button onclick = "createQuizz()">Criar quizz</button>
+    <button onclick = "createQuizz()" data-identifier="create-quizz">Criar quizz</button>
     `
     if(listaIDMeusQuizzes.length === 0){
         janelaCriarQuizz.classList.remove('escondido');
@@ -75,15 +77,24 @@ function renderizaQuizzesUsuario() {
 
 function renderizaTodosOsQuizzes(dadoSite) {
     const ul = document.querySelector('.quizzes-site');
-    for (let i = 0; i < dadoSite.length; i++) {
-        ul.innerHTML += `
-        <li class="quizz-thumb" onclick = "clicouQuizz(this)">
+
+    for (let i = 0; i < dadoSite.length; i++){
+        if(listaId.includes(dadoSite[i].id)){
+
+        }else{
+            ul.innerHTML += `
+        <li class="quizz-thumb" onclick = "clicouQuizz(this)" data-identifier="quizz-card">
             <img src="${dadoSite[i].image}">
             <p>${dadoSite[i].title}</p>
             <span class = "id escondido"> ${dadoSite[i].id}</span>
         </li>
         `
+        }
+        
     }
+
+    console.log(listaId)
+    /** */
 }
 
 function clicouQuizz(elemento) {
@@ -113,7 +124,7 @@ function renderizaTela02(data) {
         <ul class="lista-perguntas"> 
         </ul>
 
-        <section class="resultado">
+        <section class="resultado" data-identifier="quizz-result">
         </section>
 
         <div class="container-botoes">
@@ -129,7 +140,7 @@ function renderizaTela02(data) {
     for (let i = 0; i < perguntasSite.length; i++) {
         listaPerguntas.innerHTML +=
             `
-        <li class="pergunta">
+        <li class="pergunta" data-identifier="question">
             <div class="titulo-pergunta" style="background-color: ${perguntasSite[i].color}">
                 <h2>${perguntasSite[i].title}</h2>
             </div>
@@ -166,7 +177,7 @@ function renderizaTela02(data) {
         for (let j = 0; j < perguntasSite[i].answers.length; j++){
             containerRespostas[i].innerHTML += 
             `
-                <li class="resposta" onclick = "clicaResposta(this)">
+                <li class="resposta" onclick = "clicaResposta(this)" data-identifier="answer">
                 <img src="${listaRespostas[i][j].imagem}" alt="">
                 <p>${listaRespostas[i][j].texto} <span class = "escondido">${listaRespostas[i][j].acertou}</span></p>
                 </li>
@@ -621,12 +632,12 @@ function pegaQuizzCriado (){
         listaIDMeusQuizzes.push(localStorage.key(i));
     }
     listaIDMeusQuizzes = listaIDMeusQuizzes.sort( function (a,b){return a - b});
-    console.log(listaIDMeusQuizzes)
 }
 
 function listaMeusQuizzes(){
     for (let i = 0; i < listaIDMeusQuizzes.length; i++ ){
         meusQuizzes.push((JSON.parse(localStorage.getItem(listaIDMeusQuizzes[i]))));
+        listaId.push(meusQuizzes[i].id)
     }
     console.log(meusQuizzes)
 }
@@ -635,7 +646,7 @@ function renderizaTodosOsMeusQuizzes(todosQuizzesUsuario){
 
     for (let i = 0; i < meusQuizzes.length; i++){
         todosQuizzesUsuario.innerHTML += `
-        <li class="quizz-thumb" onclick = "clicouQuizzUsuario(this)">
+        <li class="quizz-thumb" onclick = "clicouQuizzUsuario(this)" data-identifier="quizz-card">
         <img src="${meusQuizzes[i].image}" alt="">
         <p>${meusQuizzes[i].title} <span class = "id escondido">${meusQuizzes[i].id}</span></p> 
         </li>
