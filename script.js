@@ -9,7 +9,6 @@ let meusQuizzes = [];
 let listaIDMeusQuizzes = [];
 let listaId = [];
 
-
 let createdQuizz = {};
 let quizzInfo = null;
 
@@ -92,9 +91,6 @@ function renderizaTodosOsQuizzes(dadoSite) {
         }
         
     }
-
-    console.log(listaId)
-    /** */
 }
 
 function clicouQuizz(elemento) {
@@ -153,7 +149,6 @@ function renderizaTela02(data) {
     }
     
     const containerRespostas = document.querySelectorAll('.container-respostas')
-
 
     for (let i = 0; i < levels.length; i++){
         arrayLevels.push(levels[i]);
@@ -259,10 +254,6 @@ function renderResults(acertos, questionsArray){
             }
         }
     }
-    
-
-    console.log(levels)
-    console.log(orderedLevels)
 
    for (let i = 0; i < orderedLevels.length; i++){
        if (i !== orderedLevels.length - 1 && porcentagemAcertos >= Math.round(orderedLevels[i].minValue) && porcentagemAcertos <= Math.round(orderedLevels[i + 1].minValue)){
@@ -380,7 +371,7 @@ function createQuizz(){
 }
 
 
-function fillQuizzInfo(event) { //use input IDs
+function fillQuizzInfo(event) {
     event.preventDefault();
     createdQuizz = {};
     const inputs = document.querySelectorAll('.criacao-info form input');
@@ -441,7 +432,7 @@ function displayQuizzQuestions() {
     }
 }
 
-function fillQuizzQuestions(event) {  /* too many loops? */
+function fillQuizzQuestions(event) {
     event.preventDefault();
     const questionNodes = document.querySelectorAll('.criacao-perguntas .pergunta-info');
 
@@ -484,8 +475,6 @@ function fillQuizzQuestions(event) {  /* too many loops? */
     } else {
         alert('Preencha os dados corretamente');
     }
-
-    
 
 }
 
@@ -590,9 +579,9 @@ function sendQuizz() {
     const promise = axios.post(`${QUIZZ_API}/quizzes`, createdQuizz);
     promise.then((response) => {
         console.log(response.data);
-        const quizzString = JSON.stringify(response.data); // localStorage so aceita string. Essa linha transforma todos os dados do quizz criado em string
-        const idQuizz = JSON.stringify(response.data.id); // Essa linha transforma o id do quizz criado em string
-        localStorage.setItem(idQuizz, quizzString); // Essa linha armazena o quizz no computador do usuario
+        const quizzString = JSON.stringify(response.data); 
+        const idQuizz = JSON.stringify(response.data.id);
+        localStorage.setItem(idQuizz, quizzString); 
  
         renderSucess(response.data);        
     });
@@ -657,7 +646,7 @@ function renderizaTodosOsMeusQuizzes(todosQuizzesUsuario){
 function clicouQuizzUsuario(elemento){
     const id = elemento.querySelector('.id');
     const idNumero = parseInt(id.innerText);
-    renderizaQuizzUsuarioCLicado(idNumero)
+    renderizaQuizzUsuarioCLicado(idNumero);
 }
 
 function renderizaQuizzUsuarioCLicado(id) {

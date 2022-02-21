@@ -1,5 +1,5 @@
 
-/* Caixa que cria quizz */
+
 .criar-quizz{
     width: 90%;
     max-width: 1051px;
@@ -105,11 +105,53 @@
     z-index: 2;
 }
 
+@media (min-width: 768px){
+    .tela01{
+        width: 90%;
+    }
+
+    .criar-quizz{
+        width:100%;
+    }
+
+    .todos-os-quizzes div{
+        width: 100%;
+        max-width: 340px;
+        margin-bottom: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .todos-os-quizzes h2 {
+        margin-right: 17px;
+    }
+
+    .todos-os-quizzes{
+        flex-direction: row;
+        flex-wrap: wrap; 
+    }
+
+    .todos-os-quizzes ul {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .quizz-thumb {
+        position: relative;
+        width: 100%;
+        max-width: 340px;
+        height: 181px;
+        margin-bottom: 14px;
+        border-radius: 5px;
+        margin-right: 5px;
+    }
+}
 
 
 @media (min-width: 1100px) {
     .criar-quizz {
-        width: 100%;
         margin: 130px 0 70px 0;
     }
 
@@ -126,10 +168,14 @@
     .todos-os-quizzes h2 {
         margin-right: 17px;
     }
-
+    
+    .quizz-thumb{
+        margin-right: 0px;
+    }
     .todos-os-quizzes .quizz-thumb:nth-of-type(3n-1), .todos-os-quizzes .quizz-thumb:nth-of-type(3n-2) {
         margin-right: 15px;
     }
+
 }
 
 @media(max-width: 375px) {
