@@ -406,12 +406,12 @@ function displayQuizzQuestions() {
     for (let i=0; i<quizzInfo.numQuestions; i++) {
         questionList.innerHTML += `
         <li>
-            <div class="pergunta-form" onclick="toggleItem(this)">
+            <div class="pergunta-form" onclick="toggleItem(this)" data-identifier="expand">
                 <h2>Pergunta ${i+1}</h2>
                 <ion-icon name="create-outline"></ion-icon>
             </div>
 
-            <div class="pergunta-info escondido">
+            <div class="pergunta-info escondido" data-identifier="question">
                 <input type="text" minlength="20" name="texto-pergunta" id="texto-pergunta" placeholder="Texto da pergunta" required>
                 <input type="text" pattern="#[0-9a-fA-F]{6}" name="cor-pergunta" id="cor-pergunta" placeholder="Cor de fundo da pergunta" required">
                 
@@ -518,11 +518,11 @@ function displayQuizzLevels() {
     for (let i=0; i<quizzInfo.numLevels; i++) {
         levels.innerHTML += `
             <li>
-                <div class="pergunta-form" onclick="toggleItem(this)">
+                <div class="pergunta-form" onclick="toggleItem(this)" data-identifier="expand">
                     <h2>Nível ${i+1}</h2>
                     <ion-icon name="create-outline"></ion-icon>
                 </div>
-                <div class="pergunta-info escondido">
+                <div class="pergunta-info escondido" data-identifier="level">
                     <input type="text" minlength="10" name="titulo-nivel" id="titulo-nivel" placeholder="Título do nível" required>
                     <input type="number" min="0" max="100" name="acerto-nivel" id="acerto-nivel" placeholder="% de acerto mínima" required>
                     <input type="url" name="url-nivel" id="url-nivel" placeholder="URL da imagem do nível" required>
